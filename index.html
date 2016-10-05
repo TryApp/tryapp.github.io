@@ -103,9 +103,7 @@
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
-			client.onreadystatechange = function() {
-				alert(client.readyState);
-			if (client.readyState == 4) {
+			client.onload = function() {
             		try{
 					alert(client.responseText);
 					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
@@ -133,7 +131,6 @@
 					alert(err)
 					document.getElementById('errorDiv').hidden = false;
 				}
-        		}
 			};
 			client.send();
 		}else {
