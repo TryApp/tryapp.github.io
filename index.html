@@ -106,11 +106,11 @@
 			client.onreadystatechange = function() {
 			if (client.readyState == 4) {
             		try{
-					alert("Response Test" + String(client.responseText));
-					var response =  String(client.responseText).replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
-					alert("Response" + response);
+					alert(client.responseText);
+					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
+					alert(response);
 					var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
-					alert("First" + first);
+					alert(first);
 					var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
 					var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
 					var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
