@@ -107,9 +107,12 @@
 			client.onreadystatechange = function() {
 				if (client.readyState == 4 && client.status == 200) {
             		try{
+						alert("error5");
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
 					var jsonString = PlistParser.parse(xml);
+					alert("error6");
 					var appMetaData = jsonString["items"][0]["metadata"]
+					alert(appMetaData);
 					document.getElementById('appTitle').textContent = appMetaData["title"];
 					document.getElementById('appVersion').textContent = "ver " + appMetaData["bundle-version"];
 					document.getElementById('appIdentifier').textContent = appMetaData["bundle-identifier"];
@@ -125,14 +128,14 @@
   					ga('send', 'pageview');
 				}
 				catch (err) {
-					console.log("error");
+					alert("error");
 					document.getElementById('errorDiv').hidden = false;
 				}
         		}
 			};
 			client.send();
 		}else {
-			console.log("error2");
+			alert("error2");
 			document.getElementById('errorDiv').hidden = false;
         }
     </script>
