@@ -4,21 +4,17 @@ var appVersion = "";
 var appIdentifier = "";
 
 PlistParser.parse = function(plist_xml){
-      alert(plist_xml);
-        alert(plist_xml.getElementsByTagName('plist'));
-          alert(plist_xml.getElementsByTagName('plist').item(0));
   var result = this._xml_to_json(plist_xml.getElementsByTagName('plist').item(0));
   return result;
 };
 
 PlistParser._xml_to_json = function(xml_node) {
   var parser = this;
-    alert(xml_node);
   var parent_node = xml_node;
-  alert(parent_node);
+  alert("parent_node" + parent_node);
   try{
    var parent_node_name = parent_node.nodeName;
-   alert(parent_node_name);
+   alert("parent_node_name" + parent_node_name);
   var child_nodes = [];
   for(var i = 0; i < parent_node.childNodes.length; ++i){
     var child = parent_node.childNodes.item(i);
