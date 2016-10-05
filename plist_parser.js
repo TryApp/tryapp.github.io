@@ -1,7 +1,7 @@
 var PlistParser = {};
-var appTitle;
-var appVersion;
-var appIdentifier;
+var appTitle = "";
+var appVersion = "";
+var appIdentifier = "";
 
 PlistParser.parse = function(plist_xml){
   var result = this._xml_to_json(plist_xml.getElementsByTagName('plist').item(0));
