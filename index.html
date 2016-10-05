@@ -98,8 +98,10 @@
 		</div>
 	</div>
     <script>
+		alert("enter");
         var qrStr = window.location.search;
         qrStr = qrStr.split("?url=")[1];
+		alert(qrStr);
         if (qrStr) {       
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
@@ -107,7 +109,7 @@
 			client.onreadystatechange = function() {
 				if (client.readyState == 4 && client.status == 200) {
             		try{
-						alert("error5");
+					alert("error5");
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
 					var jsonString = PlistParser.parse(xml);
 					alert("error6");
