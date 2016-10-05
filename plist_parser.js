@@ -153,7 +153,7 @@ PlistParser.serialize = function(_obj) {
 
     // for JSON format, strings need to be wrapped in quotes
     case 'string':
-      return '\'' + _obj + '\'';
+      return '\"' + _obj + '\"';
 
     case 'object':
       var str;
@@ -171,7 +171,7 @@ PlistParser.serialize = function(_obj) {
         for (key in _obj) { 
           // "The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype."
           if (_obj.hasOwnProperty(key)) {
-            str += key + ':' + PlistParser.serialize(_obj[key]) + ','; 
+            str +='\"' + key + '\"'  + ':' + PlistParser.serialize(_obj[key]) + ','; 
           };
         };
         str = str.replace(/\,$/, '') + '}';
