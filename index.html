@@ -110,7 +110,6 @@
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
 					var jsonString = PlistParser.parse(xml);
 					var appMetaData = jsonString["items"][0]["metadata"]
-					alert(appMetaData);
 					document.getElementById('appTitle').textContent = appMetaData["title"];
 					document.getElementById('appVersion').textContent = "ver " + appMetaData["bundle-version"];
 					document.getElementById('appIdentifier').textContent = appMetaData["bundle-identifier"];
@@ -126,6 +125,7 @@
   					ga('send', 'pageview');
 				}
 				catch (err) {
+					alert(err)
 					document.getElementById('errorDiv').hidden = false;
 				}
         		}
