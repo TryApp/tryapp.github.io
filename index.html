@@ -99,7 +99,7 @@
     <script>
         var qrStr = window.location.search;
         qrStr = qrStr.split("?url=")[1];
-        if (qrStr) {      
+        if (qrStr) { 
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
@@ -107,7 +107,7 @@
 				alert(client.responseText);
 			}
 			client.onreadystatechange = function() {
-			if (client.readyState == 4) {
+			if (client.readyState == 4 && client.status == 304) {
             		try{
 					alert(client.responseText);
 					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
