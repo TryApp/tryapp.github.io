@@ -102,6 +102,7 @@
         qrStr = qrStr.split("?url=")[1];
         if (qrStr) {       
 			var client = new XMLHttpRequest();
+			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
 			client.onloadend = function() {
 				try{
