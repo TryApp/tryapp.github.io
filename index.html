@@ -107,9 +107,8 @@
 			client.onreadystatechange = function() {
 				if (client.readyState == 4) {
             		try{
-					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
-					alert("plist_xml-"+ xml.getElementsByTagName('plist').length);
-					PlistParser.parse(xml);
+					alert("plist_xml-"+ client.responseText.getElementsByTagName('plist').length);
+					PlistParser.parse(client.responseText);
 					document.getElementById('appTitle').textContent = appTitle;
 					document.getElementById('appVersion').textContent = "ver " + appVersion;
 					document.getElementById('appIdentifier').textContent = appIdentifier;
