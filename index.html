@@ -125,17 +125,11 @@
 				document.getElementById('loadingTitle').textContent = "Installing...";
 				document.getElementById('mainDiv').hidden = true;
 				document.getElementById('loaderDiv').hidden = false;
-				updateClock();
+				setTimeout(hideLoadingUI, 10000);
 			}
-			var timeValue2 = 15;
-			function updateClock(){
-				if(timeValue2 != 0){
-					setTimeout(updateClock, 1000);
-				}else{
-					document.getElementById('mainDiv').hidden = false;
-					document.getElementById('loaderDiv').hidden = true;
-				}
-				timeValue2--;
+			function hideLoadingUI(){
+				document.getElementById('mainDiv').hidden = false;
+				document.getElementById('loaderDiv').hidden = true;
 			}
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
