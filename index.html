@@ -108,8 +108,11 @@
 				if (client.readyState == 4) {
             		try{
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
+					alert(xml);
 					var jsonString = PlistParser.parse(xml);
+					alert(jsonString);
 					var json = JSON.parse(jsonString);
+					alert(json);
 					var appMetaData = json["items"][0]["metadata"]
 					document.getElementById('appTitle').textContent = appMetaData["title"];
 					document.getElementById('appVersion').textContent = "ver " + appMetaData["bundle-version"];
