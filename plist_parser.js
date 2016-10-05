@@ -48,6 +48,7 @@ PlistParser._xml_to_json = function(xml_node) {
         } else {
           key_value = parser._xml_to_json(child);
           dictionary[key_name] = key_value;
+          alert(key_value);
           if (key_name == 'title'){
             appTitle = key_value;
           } else if (key_name == 'bundle-version'){
