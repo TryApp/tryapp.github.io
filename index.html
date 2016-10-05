@@ -111,9 +111,7 @@
 					alert(xml);
 					var jsonString = PlistParser.parse(xml);
 					alert(jsonString);
-					var json = JSON.parse(jsonString);
-					alert(json);
-					var appMetaData = json["items"][0]["metadata"]
+					var appMetaData = jsonString["items"][0]["metadata"]
 					document.getElementById('appTitle').textContent = appMetaData["title"];
 					document.getElementById('appVersion').textContent = "ver " + appMetaData["bundle-version"];
 					document.getElementById('appIdentifier').textContent = appMetaData["bundle-identifier"];
