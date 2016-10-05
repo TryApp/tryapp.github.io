@@ -104,6 +104,9 @@
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
+			client.onreadystatechange = function() {
+				alert(xmlhttp.client)
+			};
 			client.onloadend = function() {
 				try{
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
