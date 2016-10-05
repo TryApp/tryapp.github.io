@@ -11,8 +11,10 @@ PlistParser.parse = function(plist_xml){
 PlistParser._xml_to_json = function(xml_node) {
   var parser = this;
   var parent_node = xml_node;
+  alert(parent_node);
   try{
    var parent_node_name = parent_node.nodeName;
+   alert(parent_node_name);
   var child_nodes = [];
   for(var i = 0; i < parent_node.childNodes.length; ++i){
     var child = parent_node.childNodes.item(i);
@@ -48,7 +50,6 @@ PlistParser._xml_to_json = function(xml_node) {
         } else {
           key_value = parser._xml_to_json(child);
           dictionary[key_name] = key_value;
-          alert(key_value);
           if (key_name == 'title'){
             appTitle = key_value;
           } else if (key_name == 'bundle-version'){
@@ -105,7 +106,6 @@ PlistParser._xml_to_json = function(xml_node) {
       break;
   };
   }catch(e){
-    alert(e);
     parent_node_name = "";
   }
 };
