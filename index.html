@@ -107,9 +107,9 @@
 				if (client.readyState == 4) {
             		try{
 						var response =  client.responseText.replace(/[^a-zA-Z0-9.]/g,'');
-						console.log(response);
+						alert(response);
 						var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
-						console.log("First" + first);
+						("First" + first);
 					var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
 					var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
 					var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
