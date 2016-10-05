@@ -1,7 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>AppBox - Distribution of iOS app with your Dropbox account.</title>
-	<script src="plist_parser.js" type="text/javascript"></script>
 	<STYLE type="text/css">
 		body {
 			min-width: 100%;
@@ -100,15 +99,20 @@
     <script>
         var qrStr = window.location.search;
         qrStr = qrStr.split("?url=")[1];
-        if (qrStr) {       
+        if (qrStr) {      
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
 			client.onreadystatechange = function() {
 				if (client.readyState == 4) {
             		try{
-					alert("plist_xml-"+ client.responseText.getElementsByTagName('plist').length);
-					PlistParser.parse(client.responseText);
+						var response =  client.responseText.replace(/[^a-zA-Z0-9.]/g,'');
+						console.log(response);
+						var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
+						console.log("First" + first);
+					var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
+					var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
+					var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
 					document.getElementById('appTitle').textContent = appTitle;
 					document.getElementById('appVersion').textContent = "ver " + appVersion;
 					document.getElementById('appIdentifier').textContent = appIdentifier;
@@ -124,13 +128,14 @@
   					ga('send', 'pageview');
 				}
 				catch (err) {
-					alert(err)
+					console.log(err)
 					document.getElementById('errorDiv').hidden = false;
 				}
         		}
 			};
 			client.send();
 		}else {
+			alert("errordic")
 			document.getElementById('errorDiv').hidden = false;
         }
     </script>
