@@ -98,21 +98,17 @@
 		</div>
 	</div>
     <script>
-		alert("enter");
         var qrStr = window.location.search;
         qrStr = qrStr.split("?url=")[1];
-		alert(qrStr);
         if (qrStr) {       
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
 			client.onreadystatechange = function() {
-				if (client.readyState == 4 && client.status == 200) {
+				if (client.readyState == 4) {
             		try{
-					alert("error5");
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
 					var jsonString = PlistParser.parse(xml);
-					alert("error6");
 					var appMetaData = jsonString["items"][0]["metadata"]
 					alert(appMetaData);
 					document.getElementById('appTitle').textContent = appMetaData["title"];
@@ -130,14 +126,12 @@
   					ga('send', 'pageview');
 				}
 				catch (err) {
-					alert("error");
 					document.getElementById('errorDiv').hidden = false;
 				}
         		}
 			};
 			client.send();
 		}else {
-			alert("error2");
 			document.getElementById('errorDiv').hidden = false;
         }
     </script>
