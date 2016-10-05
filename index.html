@@ -108,18 +108,14 @@
 				if (client.readyState == 4) {
             		try{
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
-				alert(xml);
-					var jsonString = PlistParser.parse(xml);
-				alert(jsonString);
-					alert(jsonString["items"]);
-					var appMetaData = jsonString["items"][0]["metadata"];
-					document.getElementById('appTitle').textContent = appMetaData["title"];
-					document.getElementById('appVersion').textContent = "ver " + appMetaData["bundle-version"];
-					document.getElementById('appIdentifier').textContent = appMetaData["bundle-identifier"];
+					PlistParser.parse(xml);
+					document.getElementById('appTitle').textContent = appTitle;
+					document.getElementById('appVersion').textContent = "ver " + appVersion;
+					document.getElementById('appIdentifier').textContent = appIdentifier;
 					document.getElementById('installButton').textContent = "Install Application";
 					document.getElementById('installButton').href =  "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + qrStr;
             		document.getElementById('mainDiv').hidden = false;
-				 	document.title = appMetaData["title"] + " | AppBox";
+				 	document.title = appTitle + " | AppBox";
 					(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
