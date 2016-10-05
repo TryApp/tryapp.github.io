@@ -107,7 +107,8 @@
 				alert(client.responseText);
 			}
 			client.onreadystatechange = function() {
-			if (client.readyState == 4 && client.status == 304) {
+				alert(client.status);
+			if (client.readyState == 4) {
             		try{
 					alert(client.responseText);
 					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
