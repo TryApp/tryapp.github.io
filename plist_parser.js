@@ -105,6 +105,7 @@ PlistParser._xml_to_json = function(xml_node) {
       break;
   };
   }catch(e){
+    alert(e);
     parent_node_name = "";
   }
 };
