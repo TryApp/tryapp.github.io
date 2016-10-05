@@ -104,10 +104,11 @@
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
 			client.onreadystatechange = function() {
-				if (client.readyState == 4) {
+			if (client.readyState == 4) {
             		try{
-					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
-					alert(response);
+					alert("Response Test" : String(client.responseText));
+					var response =  String(client.responseText).replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
+					alert("Response" : response);
 					var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
 					alert("First" + first);
 					var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
