@@ -1,4 +1,7 @@
 var PlistParser = {};
+var appTitle;
+var appVersion;
+var appIdentifier;
 
 PlistParser.parse = function(plist_xml){
   var result = this._xml_to_json(plist_xml.getElementsByTagName('plist').item(0));
@@ -22,21 +25,12 @@ PlistParser._xml_to_json = function(xml_node) {
 
     case 'plist':
       if (child_nodes.length > 1){
-        // I'm not actually sure if it is legal to have multiple
-        // top-level nodes just below <plist>. But I originally 
-        // wrote it to handle an array of nodes at that level,
-        // so I'm leaving this handling in for now.
         var plist_array = [];
         for(var i = 0; i < child_nodes.length; ++i){
            plist_array.push(parser._xml_to_json(child_nodes[i]));
         };
-        // var plist_hash = {};
-        // plist_hash['plist'] = plist_array;
-        // return plist_hash;
         return plist_array;
       } else {
-        // THIS is the standard case. The top-most node under
-        // <plist> is either a <dict> or an <array>.
         return parser._xml_to_json(child_nodes[0]);
       }
 
@@ -54,13 +48,19 @@ PlistParser._xml_to_json = function(xml_node) {
         } else {
           key_value = parser._xml_to_json(child);
           dictionary[key_name] = key_value;
+          if (key_name == 'title'){
+            appTitle = key_value;
+          } else if (key_name == 'bundle-version'){
+            appVersion = key_value;
+          } else if (key_name == 'bundle-identifier'){
+            appIdentifier = key_value;
+          }
         }
       }
 
       return dictionary;
 
     case 'array':
-
       var standard_array = [];
       for(var i = 0; i < child_nodes.length; ++i){
         var child = child_nodes[i];
@@ -137,6 +137,8 @@ PlistParser.serialize = function(_obj) {
       return _obj.toSource();
     }
   } catch(e) {
+    alert(e);
+    console.log("js-error");
     // Keep on truckin'.
   }
 
