@@ -102,10 +102,6 @@
         if (qrStr) { 
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
-			client.open('GET', 'https://dl.dropbox.com' + qrStr);
-			client.onload = function(){
-				alert(client.responseText);
-			}
 			client.onreadystatechange = function() {
 				alert(client.status);
 			if (client.readyState == 4) {
@@ -138,7 +134,8 @@
 				}
         		}
 			};
-			client.send();
+			client.open('GET', 'https://dl.dropbox.com' + qrStr);
+			client.openRequest();
 		}else {
 			alert("errordic")
 			document.getElementById('errorDiv').hidden = false;
