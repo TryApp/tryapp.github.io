@@ -10,6 +10,7 @@ PlistParser.parse = function(plist_xml){
 
 PlistParser._xml_to_json = function(xml_node) {
   var parser = this;
+  alert("xml_node" + xml_node);
   var parent_node = xml_node;
   alert("parent_node" + parent_node);
   try{
