@@ -50,6 +50,15 @@
 			margin: -100px 0px 0px 0px;
 		}
 
+		p.loading {
+			color: #666;
+			font-size: 60px;
+			text-align: center;
+			padding: 0px;
+			width: 100%;
+			margin: -180px 0px 0px 0px;
+		}
+
 		p.version {
 			color: #666;
 			font-size: 45px;
@@ -69,6 +78,7 @@
 
 		.button {
     		border: 2px solid green;
+			background:white;
     		color: green;
     		padding: 15px 32px;
     		text-align: center;
@@ -83,6 +93,7 @@
 	<div id="loaderDiv" class="mainDiv">
 		<center>
 		<img style="margin:200px;" src="loading.gif" alt="loading..." height="125" width="125">
+		<p id="loadingTitle" class="loading">loading...</p>
 		</center>
 	</div>
 	<div id="mainDiv" class="mainDiv" hidden>
@@ -93,7 +104,7 @@
 		</div>
     	<div id="contentDiv" class="contentDiv">
 			<center>
-				<a id="installButton" href="" class="button">Install</a>
+				<button id="installButton" onclick="installApp()" class="button">Install</button>
 			</center>
     	</div>
 		<div id="footerDiv" class="footerDiv">
@@ -109,6 +120,23 @@
         var qrStr = window.location.search;
         qrStr = qrStr.split("?url=")[1];
         if (qrStr) { 
+			function installApp() {
+    			window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + qrStr;
+				document.getElementById('loadingTitle').textContent = "Installing...";
+				document.getElementById('mainDiv').hidden = true;
+				document.getElementById('loaderDiv').hidden = false;
+				updateClock();
+			}
+			var timeValue2 = 15;
+			function updateClock(){
+				if(timeValue2 != 0){
+					setTimeout(updateClock2, 1000);
+				}else{
+					document.getElementById('mainDiv').hidden = false;
+					document.getElementById('loaderDiv').hidden = true;
+				}
+				timeValue2--;
+			}
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.onreadystatechange = function() {
@@ -123,7 +151,6 @@
 					document.getElementById('appVersion').textContent = "ver " + appVersion;
 					document.getElementById('appIdentifier').textContent = appIdentifier;
 					document.getElementById('installButton').textContent = "Install Application";
-					document.getElementById('installButton').href =  "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + qrStr;
             		document.getElementById('mainDiv').hidden = false;
 					document.getElementById('loaderDiv').hidden = true;
 				 	document.title = appTitle + " | AppBox";
