@@ -105,10 +105,8 @@
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
 			client.onreadystatechange = function() {
-				alert(client.readyState)
-			};
-			client.onloadend = function() {
-				try{
+				if (client.readyState == 4 && client.status == 200) {
+            		try{
 					var xml = (new window.DOMParser()).parseFromString(client.responseText, "text/xml");
 					var jsonString = PlistParser.parse(xml);
 					var appMetaData = jsonString["items"][0]["metadata"]
@@ -130,7 +128,8 @@
 					console.log("error");
 					document.getElementById('errorDiv').hidden = false;
 				}
-        	}
+        		}
+			};
 			client.send();
 		}else {
 			console.log("error2");
