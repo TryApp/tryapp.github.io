@@ -104,6 +104,7 @@
 			client.timeout = 60000;
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
 			client.onreadystatechange = function() {
+				alert(client.readyState);
 			if (client.readyState == 4) {
             		try{
 					alert(client.responseText);
