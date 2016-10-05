@@ -103,14 +103,10 @@
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.onreadystatechange = function() {
-			alert(client.statusText);
 			if (client.readyState == 4  && client.status == 200) {
             		try{
-					alert(client.responseText);
 					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
-					alert(response);
 					var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
-					alert(first);
 					var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
 					var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
 					var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
