@@ -6,7 +6,11 @@ var appIdentifier = "";
 PlistParser.parse = function(plist_xml){
   alert("plist_xml"+ plist_xml);
   alert("plist_xml2"+ plist_xml.getElementsByTagName('plist'));
-  var result = this._xml_to_json(plist_xml.getElementsByTagName('plist'));
+  alert("plist_xml3"+ plist_xml.getElementsByTagName('plist').length);
+  alert("plist_xml4"+ plist_xml.getElementsByTagName('plist')[0]);
+  alert("plist_xml5"+ plist_xml.getElementsByTagName('plist')[0].node);
+  alert("plist_xml6"+ plist_xml.getElementsByTagName('plist').item(0));
+  var result = this._xml_to_json(plist_xml.getElementsByTagName('plist').item(0));
   return result;
 };
 
