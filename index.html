@@ -104,7 +104,7 @@
 			client.timeout = 60000;
 			client.onreadystatechange = function() {
 				alert(client.status);
-			if (client.readyState == 4) {
+			if (client.readyState == 4  && client.status == 200) {
             		try{
 					alert(client.responseText);
 					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
@@ -135,7 +135,7 @@
         		}
 			};
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
-			client.openRequest();
+			client.send();
 		}else {
 			alert("errordic")
 			document.getElementById('errorDiv').hidden = false;
