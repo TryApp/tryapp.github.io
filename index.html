@@ -135,6 +135,7 @@
         		}
 			};
 			client.open('GET', 'https://dl.dropbox.com' + qrStr);
+			client.overrideMimeType('text/xml')
 			client.send();
 		}else {
 			alert("errordic")
