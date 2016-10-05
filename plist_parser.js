@@ -6,9 +6,7 @@ var appIdentifier = "";
 PlistParser.parse = function(plist_xml){
   alert("plist_xml"+ plist_xml);
   alert("plist_xml2"+ plist_xml.getElementsByTagName('plist'));
-  alert("plist_xml2"+ plist_xml.getElementsByTagName('plist')[0]);
-  alert("plist_xml2"+ plist_xml.getElementsByTagName('plist').item(0));
-  var result = this._xml_to_json(plist_xml.getElementsByTagName('plist').item(0));
+  var result = this._xml_to_json(plist_xml.getElementsByTagName('plist'));
   return result;
 };
 
