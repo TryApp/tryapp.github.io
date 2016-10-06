@@ -128,8 +128,12 @@
 				setTimeout(hideLoadingUI, 10000);
 			}
 			function hideLoadingUI(){
-				document.getElementById('mainDiv').hidden = false;
+				document.getElementById('mainDiv').hidden = false;				
 				document.getElementById('loaderDiv').hidden = true;
+			}
+			function showErrorUI(){
+				document.getElementById('loaderDiv').hidden = true;
+				document.getElementById('errorDiv').hidden = false;
 			}
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
@@ -156,18 +160,18 @@
   					ga('send', 'pageview');
 				}
 				catch (err) {
-					document.getElementById('loaderDiv').hidden = true;
-					document.getElementById('errorDiv').hidden = false;
+					showErrorUI();
 				}
-        		}
+        	}else if (client.status == 404){
+				showErrorUI();
+			}
 			};
 			client.open('GET', 'https://dl.dropboxusercontent.com' + qrStr);
 			client.setRequestHeader('Content-Type', 'text/xml');
 			client.overrideMimeType('text/xml')
 			client.send();
 		}else {
-			document.getElementById('loaderDiv').hidden = true;
-			document.getElementById('errorDiv').hidden = false;
+			showErrorUI();
         }
     </script>
 </body>
