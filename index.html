@@ -162,7 +162,7 @@
 				catch (err) {
 					showErrorUI();
 				}
-        	}else if (client.status == 404){
+        	}else if (client.status >= 400){
 				showErrorUI();
 			}
 			};
