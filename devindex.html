@@ -70,6 +70,7 @@
 		
 		p.footer {
 			color: green;
+			background:white;
 			font-size: 80px;
 			text-align: center;
 			margin: 0 auto;
@@ -78,15 +79,15 @@
 		}
 
 		.button {
-    		border: 2px solid green;
+    			border: 2px solid green;
 			background:white;
-    		color: green;
-    		padding: 15px 32px;
-    		text-align: center;
-    		text-decoration: none;
-    		display: inline-block;
-    		font-size: 80px;
-    		margin: 100px 0px 100px 0px;
+    			color: green;
+    			padding: 15px 32px;
+    			text-align: center;
+    			text-decoration: none;
+    			display: inline-block;
+    			font-size: 80px;
+    			margin: 100px 0px 100px 0px;
 		}
 	</STYLE>
 </head>
@@ -109,7 +110,7 @@
 			</center>
     	</div>
 		<div id="footerDiv" class="footerDiv">
-			<a class="footer" href="https://iosappswirelessinstallation.codeplex.com/">© AppBox</a>
+			<button class="footer" onclick="appPage()">© AppBox</button>
 		</div>
 	</div>
 	<div id="errorDiv" class="mainDiv" hidden>
@@ -118,61 +119,68 @@
 		</div>
 	</div>
     <script>
+	function installApp() {
+    		window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + qrStr;
+		document.getElementById('loadingTitle').textContent = "Connecting...";
+		document.getElementById('mainDiv').hidden = true;
+		document.getElementById('loaderDiv').hidden = false;
+		setTimeout(hideLoadingUI, 5000);
+	}
+	    
+	function appPage() {
+    		window.location.href = "https://iosappswirelessinstallation.codeplex.com/";
+	}
+	    
+	function hideLoadingUI(){
+		document.getElementById('mainDiv').hidden = false;				
+		document.getElementById('loaderDiv').hidden = true;
+	}
+	    
+	function showErrorUI(){
+		document.getElementById('loaderDiv').hidden = true;
+		document.getElementById('errorDiv').hidden = false;
+	}
+	    
         var qrStr = window.location.search;
         qrStr = qrStr.split("?url=")[1];
         if (qrStr) { 
-			function installApp() {
-    			window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + qrStr;
-				document.getElementById('loadingTitle').textContent = "Connecting...";
-				document.getElementById('mainDiv').hidden = true;
-				document.getElementById('loaderDiv').hidden = false;
-				setTimeout(hideLoadingUI, 5000);
-			}
-			function hideLoadingUI(){
-				document.getElementById('mainDiv').hidden = false;				
-				document.getElementById('loaderDiv').hidden = true;
-			}
-			function showErrorUI(){
-				document.getElementById('loaderDiv').hidden = true;
-				document.getElementById('errorDiv').hidden = false;
-			}
-			var client = new XMLHttpRequest();
-			client.timeout = 60000;
-			client.onreadystatechange = function() {
-			if (client.readyState == 4  && client.status == 200) {
+	var client = new XMLHttpRequest();
+		client.timeout = 60000;
+		client.onreadystatechange = function() {
+		if (client.readyState == 4  && client.status == 200) {
             		try{
-					var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
-					var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
-					var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
-					var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
-					var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
-					document.getElementById('appTitle').textContent = appTitle;
-					document.getElementById('appVersion').textContent = "ver " + appVersion;
-					document.getElementById('appIdentifier').textContent = appIdentifier;
-					document.getElementById('installButton').textContent = "Install Application";
-            		document.getElementById('mainDiv').hidden = false;
-					document.getElementById('loaderDiv').hidden = true;
-				 	document.title = appTitle + " | AppBox";
-					(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  					})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  					ga('create', 'UA-85215717-1', 'auto');
-  					ga('send', 'pageview');
-				}
-				catch (err) {
-					showErrorUI();
-				}
-        	}else if (client.status >= 400){
+				var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
+				var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
+				var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
+				var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
+				var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
+				document.getElementById('appTitle').textContent = appTitle;
+				document.getElementById('appVersion').textContent = "ver " + appVersion;
+				document.getElementById('appIdentifier').textContent = appIdentifier;
+				document.getElementById('installButton').textContent = "Install Application";
+            			document.getElementById('mainDiv').hidden = false;
+				document.getElementById('loaderDiv').hidden = true;
+				document.title = appTitle + " | AppBox";
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  				})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  				ga('create', 'UA-85215717-1', 'auto');
+  				ga('send', 'pageview');
+			}
+			catch (err) {
 				showErrorUI();
 			}
-			};
-			client.open('GET', 'https://dl.dropboxusercontent.com' + qrStr);
-			client.setRequestHeader('Content-Type', 'text/xml');
-			client.overrideMimeType('text/xml')
-			client.send();
-		}else {
+        	}else if (client.status >= 400){
 			showErrorUI();
+		}
+		};
+		client.open('GET', 'https://dl.dropboxusercontent.com' + qrStr);
+		client.setRequestHeader('Content-Type', 'text/xml');
+		client.overrideMimeType('text/xml')
+		client.send();
+	}else {
+		showErrorUI();
         }
     </script>
 </body>
