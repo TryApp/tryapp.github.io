@@ -69,7 +69,8 @@
 		}
 		
 		.appBoxButton {
-			color: green;
+    			border: 0px;
+			color: #008080;
 			background:white;
 			font-size: 80px;
 			text-align: center;
@@ -94,21 +95,21 @@
 <body>
 	<div id="loaderDiv" class="mainDiv">
 		<center>
-		<img style="margin:200px;" src="loading.gif" alt="loading..." height="125" width="125">
-		<p id="loadingTitle" class="loading">loading...</p>
+			<img style="margin:200px;" src="loading.gif" alt="loading..." height="125" width="125">
+			<p id="loadingTitle" class="loading">loading...</p>
 		</center>
 	</div>
 	<div id="mainDiv" class="mainDiv" hidden>
 		<div id="headerDiv" class="headerDiv">
-	    	<p id="appTitle" class="title">Wait..."</p>
+		    	<p id="appTitle" class="title">Wait..."</p>
 			<p id="appIdentifier" class="subtitle">Wait...</p>
 			<p id="appVersion" class="version">Wait...</p>
 		</div>
-    	<div id="contentDiv" class="contentDiv">
+    		<div id="contentDiv" class="contentDiv">
 			<center>
 				<button id="installButton" onclick="installApp()" class="installButton">Install</button>
 			</center>
-    	</div>
+    		</div>
 		<div id="footerDiv" class="footerDiv">
 			<button class="appBoxButton" onclick="appPage()">© AppBox</button>
 		</div>
