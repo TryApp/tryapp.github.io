@@ -57,6 +57,7 @@
           loadGmailApi();
           $('#authorize-button').remove();
         } else {
+          $('#authorize-button').removeClass("hidden");
           $('#authorize-button').on('click', function(){
             handleAuthClick();
           });
@@ -95,7 +96,7 @@
       }
       function replyTidy()
       {
-          console.log('success');
+          console.log('send mail - success!!');
       }
 
       function sendMessage(headers_obj, message, callback)
