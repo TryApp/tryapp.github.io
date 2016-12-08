@@ -77,10 +77,10 @@
       function sendEmail()
       {
         var qrStr = window.location.search;
-        console.log(qrStr);
-        var toEmail = decodeURI((qrStr.split('?to=')[1]).split('&')[0]);
-        if (toEmail)
+        if (qrStr.length > 0 && qrStr.split('?to=').length == 2)
         {
+          console.log(qrStr);
+          var toEmail = decodeURI((qrStr.split('?to=')[1]).split('&')[0]);
           console.log(toEmail);
           var subject = decodeURI((qrStr.split('&sub=')[1]).split('&')[0]);
           console.log(subject);
