@@ -56,7 +56,6 @@
         if(authResult && !authResult.error) {
           loadGmailApi();
           $('#authorize-button').remove();
-          sendEmail();
         } else {
           $('#authorize-button').on('click', function(){
             handleAuthClick();
@@ -68,6 +67,11 @@
       function loadGmailApi() {
         gapi.client.load('gmail', 'v1', displayInbox);
       }
+      
+       function displayInbox() {
+         console.log('success sending mail');
+            sendEmail();
+       }
 
       function sendEmail()
       {
@@ -91,7 +95,7 @@
       }
       function replyTidy()
       {
-                console.log('success');
+          console.log('success');
       }
 
       function sendMessage(headers_obj, message, callback)
