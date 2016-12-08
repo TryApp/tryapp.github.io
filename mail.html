@@ -58,16 +58,18 @@
         gapi.client.load('gmail', 'v1', displayInbox);
       }
       
-       function displayInbox() {
-         console.log('success sending mail');
-            sendEmail();
-       }
-
-      function sendEmail()
-      {
+      function displayInbox() {
         var qrStr = window.location.search;
-        if (qrStr.length > 0 && qrStr.split('?to=').length == 2)
-        {
+        if (qrStr.length > 0){
+          sendEmail();
+        }else{
+          console.log('Login Success!!');
+        }
+      }
+  
+      function sendEmail(){
+        var qrStr = window.location.search;
+        if (qrStr.split('?to=').length == 2){
           console.log(qrStr);
           var toEmail = decodeURI((qrStr.split('?to=')[1]).split('&')[0]);
           console.log(toEmail);
@@ -88,13 +90,12 @@
         }
         return false;
       }
-      function replyTidy()
-      {
-          console.log('send mail - success!!');
+      
+      function replyTidy(){
+        console.log('Mail Send!!');
       }
 
-      function sendMessage(headers_obj, message, callback)
-      {
+      function sendMessage(headers_obj, message, callback){
         var email = '';
         for(var header in headers_obj)
           email += header += ": "+headers_obj[header]+"\r\n";
