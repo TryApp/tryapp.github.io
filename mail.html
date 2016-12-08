@@ -3,17 +3,36 @@
   <head>
     <title>AppBox Gmail API</title>
     <meta charset="UTF-8">	
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">		
+    <style>
+    .h1 {
+			color: #333;
+			font-size: 100px;
+			font-weight:100;
+			padding: 0px;
+			text-align: center;
+		}
+      
+		.button {
+    		border: 2px solid green;
+		  	background:white;
+    		color: green;
+    		padding: 15px 32px;
+    		text-align: center;
+    		text-decoration: none;
+    		display: inline-block;
+    		font-size: 80px;
+    		margin: 100px 0px 100px 0px;
+		}
+    </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Send with your Gmail account</h1>
-      <button id="authorize-button" class="btn btn-primary hidden">Authorize</button>
+    <div id="container" hidden>
+      <h1 id="hint-label">Send with your Gmail account</h1>
+      <button id="authorize-button">Authorize</button>
     </div>
     
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
     <script type="text/javascript">
       var clientId = '689924722616-j9di5up7djqcmjugmld4q9kq4l0iccoe.apps.googleusercontent.com';
       var apiKey = 'AIzaSyB7Qf2E53aIV42faWMaWurmw7fGacK6p4A';
@@ -42,11 +61,11 @@
       }
 
       function handleAuthResult(authResult) {
+        $('#container').show();
         if(authResult && !authResult.error) {
           loadGmailApi();
           $('#authorize-button').remove();
         } else {
-          $('#authorize-button').removeClass("hidden");
           $('#authorize-button').on('click', function(){
             handleAuthClick();
           });
@@ -63,7 +82,7 @@
         if (qrStr.length > 0){
           sendEmail();
         }else{
-          console.log('Login Success!!');
+          $('#hint-label').text('Login Success');
         }
       }
   
@@ -86,13 +105,13 @@
             replyTidy
           );
         }else{
-          console.log('Invalid Perameter!!');
+          $('#hint-label').text('Invalid Perameter');
         }
         return false;
       }
       
       function replyTidy(){
-        console.log('Mail Send!!');
+        $('#hint-label').text('Mail Sent');
       }
 
       function sendMessage(headers_obj, message, callback){
