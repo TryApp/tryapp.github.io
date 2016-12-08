@@ -69,7 +69,7 @@
         var qrStr = window.location.search;
         var toEmail = (qrStr.split("?to=")[1]).split("&")[0];
         var subject = (qrStr.split("&sub=")[1]).split("&")[0];
-        var body = (qrStr.split("&body=")[1]).split("&")[0];
+        var body = (qrStr.split("&body=")[1]);
         sendMessage(
           {
             'To': toEmail,
