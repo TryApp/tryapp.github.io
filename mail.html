@@ -86,10 +86,10 @@
         console.log(body);
         sendMessage(
           {
-            'To': toEmail,
-            'Subject': subject
+            'To': decodeURIComponent(toEmail),
+            'Subject': decodeURIComponent(subject)
           },
-          body,
+          decodeURIComponent(body),
           replyTidy
         );
         return false;
