@@ -67,9 +67,13 @@
       function sendEmail()
       {
         var qrStr = window.location.search;
+        console.log(qrStr);
         var toEmail = (qrStr.split("?to=")[1]).split("&")[0];
+        console.log(toEmail);
         var subject = (qrStr.split("&sub=")[1]).split("&")[0];
+        console.log(subject);
         var body = (qrStr.split("&body=")[1]);
+        console.log(body);
         sendMessage(
           {
             'To': toEmail,
@@ -82,7 +86,7 @@
       }
       function replyTidy()
       {
-        
+                console.log('success');
       }
 
       function sendMessage(headers_obj, message, callback)
