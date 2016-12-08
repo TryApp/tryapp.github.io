@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Gmail API demo</title>
+    <title>AppBox Gmail API</title>
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -78,13 +78,13 @@
       {
         var qrStr = window.location.search;
         console.log(qrStr);
-        var toEmail = decodeURI((qrStr.split("?to=")[1]).split("&")[0]);
+        var toEmail = decodeURI((qrStr.split('?to=')[1]).split('&')[0]);
         if (toEmail)
         {
           console.log(toEmail);
-          var subject = decodeURI((qrStr.split("&sub=")[1]).split("&")[0]);
+          var subject = decodeURI((qrStr.split('&sub=')[1]).split('&')[0]);
           console.log(subject);
-          var body = decodeURI((qrStr.split("&body=")[1]));
+          var body = decodeURI((qrStr.split('&body=')[1]));
           console.log(body);
           sendMessage(
             {
@@ -94,6 +94,8 @@
             body,
             replyTidy
           );
+        }else{
+          window.location.href = 'https://github.com/vineetchoudhary/AppBox-iOSAppsWirelessInstallation';
         }
         return false;
       }
