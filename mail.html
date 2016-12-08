@@ -78,20 +78,23 @@
       {
         var qrStr = window.location.search;
         console.log(qrStr);
-        var toEmail = (qrStr.split("?to=")[1]).split("&")[0];
-        console.log(toEmail);
-        var subject = (qrStr.split("&sub=")[1]).split("&")[0];
-        console.log(subject);
-        var body = (qrStr.split("&body=")[1]);
-        console.log(body);
-        sendMessage(
-          {
-            'To': decodeURI(toEmail),
-            'Subject': decodeURI(subject)
-          },
-          decodeURI(body),
-          replyTidy
-        );
+        var toEmail = decodeURI((qrStr.split("?to=")[1]).split("&")[0]);
+        if (toEmail)
+        {
+          console.log(toEmail);
+          var subject = decodeURI((qrStr.split("&sub=")[1]).split("&")[0]);
+          console.log(subject);
+          var body = decodeURI((qrStr.split("&body=")[1]));
+          console.log(body);
+          sendMessage(
+            {
+              'To': toEmail,
+              'Subject': subject
+            },
+            body,
+            replyTidy
+          );
+        }
         return false;
       }
       function replyTidy()
