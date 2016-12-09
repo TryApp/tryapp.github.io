@@ -102,8 +102,7 @@
 	  var devmsg = decodeURI((qrStr.split('&devmsg=')[1]));
           console.log(devmsg);
 	  var subject = appName + ' ' + version + '(' + build + ') is ready to test - AppBox';
-//	  var body =  <br/><br/> To test this app, open this url ' + link + ' on your iOS device and install the app.';
-	 var body = '<html><body><h1 style=\"color: #333; font-size: 25px; font-weight:50; padding: 0px; text-align: center;\">' +appName + ' ' + version + '(' + build + ') for iOS is ready to test.</h1> <center> <a style=\"color: green; text-align: center; font-size: 30px;\">' +link+ '</a></center></body></html>';
+       	 var body = '<html><body><h1 style=\"color: #333; font-size: 25px; font-weight:50; padding: 0px; text-align: center;\">' +appName + ' ' + version + '(' + build + ') for iOS is ready to test.</h1> <center> <a href=\"'+link+'\" style=\"color: green; text-align: center; font-size: 30px;\">' +link+ '</a></center><h1 style=\"color: #333; font-size: 25px; font-weight:50; padding: 0px; text-align: center;\">To test this app, open this above url on your iOS device and install the app.</h1></body></html>';
           sendMessage(
             {
               'To': toEmail,
