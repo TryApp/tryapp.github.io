@@ -103,7 +103,7 @@
           console.log(devmsg);
 	  var subject = appName + ' ' + version + '(' + build + ') is ready to test - AppBox';
 //	  var body =  <br/><br/> To test this app, open this url ' + link + ' on your iOS device and install the app.';
-	 var body = '<html><body><h1 style=\"color: #333; font-size: 25px; font-weight:50; padding: 0px; text-align: center;\">' +appName + ' ' + version + '(' + build + ') for iOS is ready to test.</h1> <center> <a style=\"color: green; padding: 5px 5px; text-align: center; text-decoration: none; display: inline-block; font-size: 30px; margin: 10px 0px 10px 0px;\">' +link+ '</a></center></body></html>';
+	 var body = '<html><body><h1 style=\"color: #333; font-size: 25px; font-weight:50; padding: 0px; text-align: center;\">' +appName + ' ' + version + '(' + build + ') for iOS is ready to test.</h1> <center> <a style=\"color: green; text-align: center; font-size: 30px;\">' +link+ '</a></center></body></html>';
           sendMessage(
             {
               'To': toEmail,
@@ -135,48 +135,6 @@
           }
         });
         return sendRequest.execute(callback);
-      }
-
-      function getHeader(headers, index) {
-        var header = '';
-        $.each(headers, function(){
-          if(this.name.toLowerCase() === index.toLowerCase()){
-            header = this.value;
-          }
-        });
-        return header;
-      }
-
-      function getBody(message) {
-        var encodedBody = '';
-        if(typeof message.parts === 'undefined')
-        {
-          encodedBody = message.body.data;
-        }
-        else
-        {
-          encodedBody = getHTMLPart(message.parts);
-        }
-        encodedBody = encodedBody.replace(/-/g, '+').replace(/_/g, '/').replace(/\s/g, '');
-        return decodeURIComponent(escape(window.atob(encodedBody)));
-      }
-
-      function getHTMLPart(arr) {
-        for(var x = 0; x <= arr.length; x++)
-        {
-          if(typeof arr[x].parts === 'undefined')
-          {
-            if(arr[x].mimeType === 'text/html')
-            {
-              return arr[x].body.data;
-            }
-          }
-          else
-          {
-            return getHTMLPart(arr[x].parts);
-          }
-        }
-        return '';
       }
     </script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
