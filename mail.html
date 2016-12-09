@@ -1,83 +1,80 @@
 <!doctype html>
 <html>
-  <head>
-    <title>AppBox Gmail API</title>
-    <meta charset="UTF-8">	
-    <style  type="text/css">
-    h1 {
+	<head>
+		<title>AppBox Gmail API</title>
+    		<meta charset="UTF-8">	
+   		 <style  type="text/css">
+    			h1 {
 			color: #333;
 			font-size: 30px;
 			font-weight:100;
 			padding: 0px;
 			text-align: center;
-		}
+			}
       
-		button {
-   		border: 2px solid green;
-	  	background:white;
-   		color: green;
-   		padding: 5px 5px;
-   		text-align: center;
-   		text-decoration: none;
-   		display: inline-block;
-   		font-size: 30px;
-   		margin: 10px 0px 10px 0px;
-		}
-    </style>
-  </head>
-  <body>
-    <div id="container" hidden>
-      <h1 id="hint-label">Send with your Gmail account</h1>
+			button {
+   			border: 2px solid green;
+	  		background:white;
+   			color: green;
+   			padding: 5px 5px;
+   			text-align: center;
+   			text-decoration: none;
+   			display: inline-block;
+   			font-size: 30px;
+   			margin: 10px 0px 10px 0px;
+			}
+    		</style>
+  	</head>
+	<body>
+		<div id="container" hidden>
+			<h1 id="hint-label">Send with your Gmail account</h1>
 			<center>
-      	<button id="authorize-button">Authorize</button>
+			<button id="authorize-button">Authorize</button>
 			</center>
-    </div>
-    
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    
-    <script type="text/javascript">
-      var clientId = '689924722616-j9di5up7djqcmjugmld4q9kq4l0iccoe.apps.googleusercontent.com';
-      var apiKey = 'AIzaSyB7Qf2E53aIV42faWMaWurmw7fGacK6p4A';
-      var scopes = 'https://www.googleapis.com/auth/gmail.send';
+		</div>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			var clientId = '689924722616-j9di5up7djqcmjugmld4q9kq4l0iccoe.apps.googleusercontent.com';
+			var apiKey = 'AIzaSyB7Qf2E53aIV42faWMaWurmw7fGacK6p4A';
+			var scopes = 'https://www.googleapis.com/auth/gmail.send';
+			
+			function handleClientLoad() {
+				gapi.client.setApiKey(apiKey);
+				window.setTimeout(checkAuth, 1);
+			}
 
-      function handleClientLoad() {
-        gapi.client.setApiKey(apiKey);
-        window.setTimeout(checkAuth, 1);
-      }
-
-      function checkAuth() {
-        gapi.auth.authorize({
-          client_id: clientId,
-          scope: scopes,
-          immediate: true
-        }, handleAuthResult);
-      }
-
-      function handleAuthClick() {
-        gapi.auth.authorize({
-          client_id: clientId,
-          scope: scopes,
-          immediate: false
-        }, handleAuthResult);
-        return false;
-      }
-
-      function handleAuthResult(authResult) {
-        $('#container').show();
-        if(authResult && !authResult.error) {
-          loadGmailApi();
-          $('#authorize-button').remove();
-        } else {
-          $('#authorize-button').on('click', function(){
-            handleAuthClick();
-          });
-        }
-      }
-      
-      
-      function loadGmailApi() {
-        gapi.client.load('gmail', 'v1', displayInbox);
-      }
+			function checkAuth() {
+				gapi.auth.authorize({
+					client_id: clientId,
+					scope: scopes,
+					immediate: true
+				}, handleAuthResult);
+			}
+			
+			function handleAuthClick() {
+				gapi.auth.authorize({
+					client_id: clientId,
+					scope: scopes,
+					immediate: false
+				}, handleAuthResult);
+				return false;
+			}
+			
+			function handleAuthResult(authResult) {
+				$('#container').show();
+				if(authResult && !authResult.error) {
+					loadGmailApi();
+					$('#authorize-button').remove();
+				} else {
+					$('#authorize-button').on('click', function(){
+						handleAuthClick();
+					});
+				}
+			}
+			
+			function loadGmailApi() {
+				gapi.client.load('gmail', 'v1', displayInbox);
+			}
       
       function displayInbox() {
         var qrStr = window.location.search;
@@ -110,9 +107,10 @@
           sendMessage(
             {
               'To': toEmail,
-              'Subject': subject
+              'Subject': subject,
+		'Content-Type': 'text/html'
             },
-            getBody(body),
+            body,
             replyTidy
           );
         }else{
