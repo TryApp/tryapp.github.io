@@ -94,10 +94,16 @@
           console.log(qrStr);
           var toEmail = decodeURI((qrStr.split('?to=')[1]).split('&')[0]);
           console.log(toEmail);
-          var subject = decodeURI((qrStr.split('&sub=')[1]).split('&')[0]);
-          console.log(subject);
-          var body = decodeURI((qrStr.split('&body=')[1]));
-          console.log(body);
+          var appName = decodeURI((qrStr.split('&app=')[1]).split('&')[0]);
+          console.log(appName);
+          var version = decodeURI((qrStr.split('&ver=')[1]).split('&')[0]);
+          console.log(version);
+	 				var build = decodeURI((qrStr.split('&build=')[1]).split('&')[0]);
+          console.log(build);
+	 				var link = decodeURI((qrStr.split('&link=')[1]).split('&')[0]);
+          console.log(link);
+					var subject = appName + ' ' + version + '(' + build + ') is ready to test - AppBox';
+					var body = appName + ' ' + version + '(' + build + ') for iOS is ready to test. <br/><br/> To test this app, open this url ' + link + ' on your iOS device and install the app.';
           sendMessage(
             {
               'To': toEmail,
