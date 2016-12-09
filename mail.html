@@ -98,12 +98,14 @@
           console.log(appName);
           var version = decodeURI((qrStr.split('&ver=')[1]).split('&')[0]);
           console.log(version);
-	 				var build = decodeURI((qrStr.split('&build=')[1]).split('&')[0]);
+	  var build = decodeURI((qrStr.split('&build=')[1]).split('&')[0]);
           console.log(build);
-	 				var link = decodeURI((qrStr.split('&link=')[1]).split('&')[0]);
+	  var link = decodeURI((qrStr.split('&link=')[1]).split('&')[0]);
           console.log(link);
-					var subject = appName + ' ' + version + '(' + build + ') is ready to test - AppBox';
-					var body = appName + ' ' + version + '(' + build + ') for iOS is ready to test. <br/><br/> To test this app, open this url ' + link + ' on your iOS device and install the app.';
+	  var devmsg = decodeURI((qrStr.split('&devmsg=')[1]));
+          console.log(devmsg);
+	  var subject = appName + ' ' + version + '(' + build + ') is ready to test - AppBox';
+	  var body = appName + ' ' + version + '(' + build + ') for iOS is ready to test. <br/><br/> To test this app, open this url ' + link + ' on your iOS device and install the app.';
           sendMessage(
             {
               'To': toEmail,
