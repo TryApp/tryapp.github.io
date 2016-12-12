@@ -55,7 +55,7 @@
 				gapi.auth.authorize({
 					client_id: clientId,
 					scope: scopes,
-					immediate: false
+					immediate: true
 				}, handleAuthResult);
 				return false;
 			}
@@ -66,9 +66,10 @@
 					loadGmailApi();
 					$('#authorize-button').remove();
 				} else {
-					$('#authorize-button').on('click', function(){
-						handleAuthClick();
-					});
+					handleAuthClick();
+					//$('#authorize-button').on('click', function(){
+					//	handleAuthClick();
+					//});
 				}
 			}
 			
