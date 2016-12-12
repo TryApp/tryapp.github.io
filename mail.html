@@ -66,10 +66,9 @@
 					loadGmailApi();
 					$('#authorize-button').remove();
 				} else {
-					handleAuthClick();
-					//$('#authorize-button').on('click', function(){
-					//	handleAuthClick();
-					//});
+					$('#authorize-button').on('click', function(){
+						handleAuthClick();
+					});
 				}
 			}
 			
