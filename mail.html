@@ -105,7 +105,7 @@
 	  var subject = appName + ' ' + version + '(' + build + ') is ready to test - AppBox';
        	 var body = '<html><body><h1 style=\"color: #333; font-size: 25px; font-weight:50; padding: 0px; text-align: center;\">' +appName + ' ' + version + '(' + build + ') for iOS is ready to test.</h1> <center> <a href=\"'+link+'\" style=\"color: green; text-align: center; font-size: 30px;\">' +link+ '</a></center><p style=\"color: #333; font-size: 20px; text-align: center;\">To test this app, open above url on your iOS device and install the app.</p>';
 	if (devmsg.length > 0){
-		body += '<br /><p style=\"color: #333; font-size: 22px;\">Developer Note<p><blockquote style=\"background:#ccc; color: #ffeb8e; font-size: 17px;\">' +devmsg+ '</blockquote>'
+		body += '<br /><blockquote style=\"background:#ccc; color: #333; font-size: 17px; text-align: center;\">Developer Note <br>' +devmsg+ '</blockquote>'
 	}
 	body += '</body></html>';
           sendMessage(
