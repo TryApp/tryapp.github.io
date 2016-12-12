@@ -81,6 +81,7 @@
         if (qrStr.length > 0){
           sendEmail();
         }else{
+		document.title = 'LoginSuccess';
           $('#hint-label').text('Login Success');
         }
       }
@@ -113,13 +114,15 @@
             replyTidy
           );
         }else{
+		document.title = 'InvalidPerameter';
           $('#hint-label').text('Invalid Perameter');
         }
         return false;
       }
       
       function replyTidy(){
-        $('#hint-label').text('Mail Sent');
+	      document.title = 'MailSent';
+	        $('#hint-label').text('Mail Sent');
       }
 
       function sendMessage(headers_obj, message, callback){
