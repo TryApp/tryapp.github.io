@@ -197,7 +197,7 @@
 			client.setRequestHeader('Content-Type', 'text/xml');
 			client.overrideMimeType('text/xml')
 			client.send();
-		}else if (qrStr.indexOf('UniqueLink.json') != -1){
+		}else if (qrStr.indexOf('appinfo.json') != -1){
 			var client = new XMLHttpRequest();
 			client.timeout = 60000;
 			client.onreadystatechange = function() {
