@@ -121,8 +121,12 @@
 		</div>
 	</div>
     <script>
+	var qrStr = window.location.search;
+        qrStr = qrStr.split("?url=")[1];
+	var menifestLinkPath = qrStr;
+	    
 	function installApp() {
-    		window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + qrStr;
+    		window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifestLinkPath;
 		document.getElementById('loadingTitle').textContent = "Connecting...";
 		document.getElementById('mainDiv').hidden = true;
 		document.getElementById('loaderDiv').hidden = false;
@@ -152,8 +156,6 @@
   		ga('send', 'pageview');
 	}
 	    
-        var qrStr = window.location.search;
-        qrStr = qrStr.split("?url=")[1];
         if (qrStr) {
 		if (qrStr.indexOf('manifest.plist') != -1){
 			var client = new XMLHttpRequest();
@@ -161,6 +163,7 @@
 			client.onreadystatechange = function() {
 				if (client.readyState == 4  && client.status == 200) {
             				try{
+						menifestLinkPath = qrStr;
 						var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
 						var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
 						var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
@@ -192,11 +195,12 @@
 			client.onreadystatechange = function() {
 				if (client.readyState == 4  && client.status == 200) {
             				try{
-						var response =  client.responseText;
-						var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
-						var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
-						var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
-						var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
+						var response =  JSON.parse(client.responseText);
+						menifestLinkPath = response.latestVersion.manifestLink.split("dropbox.com")[1];
+						var first = response.latestVersion.build;
+						var appTitle = response.latestVersion.name;
+						var appIdentifier = response.latestVersion.identifier;
+						var appVersion =  response.latestVersion.version;
 						document.getElementById('appTitle').textContent = appTitle;
 						document.getElementById('appVersion').textContent = "ver " + appVersion;
 						document.getElementById('appIdentifier').textContent = appIdentifier;
