@@ -273,7 +273,7 @@
 						document.getElementById('loaderDiv').hidden = true;
 						document.title = appTitle + " | AppBox";
 						trackPageName();
-						updatePreviousBuild(response.versions)
+						updatePreviousBuild(response.versions);
 					}
 					catch (err) {
 						showErrorUI();
