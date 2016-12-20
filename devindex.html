@@ -87,6 +87,7 @@
 			font-size: 60px;
 			padding: 15px;
 			margin: 0px;
+			float: left;
 		}
 		
 		button.appBoxButton {
@@ -111,17 +112,17 @@
     			margin: 100px 0px 100px 0px;
 		}
 		
-		button.installButton {
-			border: 1px solid green;
+		button.allBuildButton {
+			border: 1px solid #666;
 			border-radius: 5px;
 			background: white;
-    			color: green;
-    			padding: 5px;
+    			color: #666;
+    			padding: 15px;
     			text-align: center;
     			text-decoration: none;
     			display: inline-block;
-    			font-size: 20px;
-    			margin: 0px;
+    			font-size: 50px;
+    			margin: 5px;
 		}
 		
 	</STYLE>
@@ -143,7 +144,7 @@
 			<center>
 				<button id="installButton" onclick="installApp()" class="installButton">Install</button>
 				<br />
-				<button id="showAllBuildButton" onclick="showAllBuilds()" class="installButton">Install Previous Builds</button>
+				<button id="showAllBuildButton" onclick="showAllBuilds()" class="allBuildButton">Install Previous Builds</button>
 			</center>
     		</div>
 		<div id="footerDiv" class="footerDiv">
@@ -154,7 +155,7 @@
 	</div>
 	<div id="allBuildsDiv" class="buildDiv" hidden>
 		<p class="miniSubtitle">All Builds</p>
-		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="installButton"> X </button>
+		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="allBuildButton" style="right: 15px; position: absolute;"> X </button>
 		<table id="allBuildTable">
 		</table>
 	</div>
