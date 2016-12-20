@@ -128,7 +128,7 @@
 		}
 		
 		.defaultTable{
-			border:1px solid #ddd;
+			border-collapse:collapse;
 			width:100%
 		}
 		
@@ -182,7 +182,7 @@
 		<p class="miniSubtitle">All Builds</p>
 		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="allBuildButton closeAllBuildButton"> X </button>
 		<hr/>
-		<table id="allBuildTable">
+		<table border id="allBuildTable">
 		</table>
 	</div>
 	<div id="errorDiv" class="mainDiv" hidden>
