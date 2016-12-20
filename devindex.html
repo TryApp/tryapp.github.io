@@ -305,15 +305,15 @@
 						document.getElementById('appVersion').textContent = "ver " + appVersion;
 						document.getElementById('appIdentifier').textContent = appIdentifier;
 						document.getElementById('installButton').textContent = "Install Application";
-            					document.getElementById('mainDiv').hidden = false;
-						document.getElementById('loaderDiv').hidden = true;
 						document.title = appTitle + " | AppBox";
 						trackPageName();
 						if (response.versions.length > 1){
 							updatePreviousBuild(response.versions);   
 						}else{
-							document.getElementById('showAllBuildButton').hidden = true;
+							document.getElementById('showAllBuildButton').style = "display: none;";
 						}
+						document.getElementById('mainDiv').hidden = false;
+						document.getElementById('loaderDiv').hidden = true;
 					}
 					catch (err) {
 						showErrorUI();
