@@ -243,8 +243,12 @@
 			var cell2 = row.insertCell(1);
 			cell1.innerHTML = '<p class=\"miniSubtitle\">' + version.version + '(' + version.build  +')</p>';
 			var menifestLink = version.manifestLink.split("dropbox.com")[1];
-			menifestLink = menifestLink.replace("/","//");
-			cell2.innerHTML = '<button onclick=\"installApp(\"' +menifestLink+ '\") class=\"installButton allBuildButton\">Install</button>';	
+			var buttonId = 'appInstall' + i;
+			cell2.innerHTML = '<button id=\"'+buttonId+'\" class=\"installButton allBuildButton\">Install</button>';	
+			var button = document.getElementById(buttonId);
+			button.addEventListener('click', function(){
+			    installApp(menifestLink);
+			});
 		}
 	}
 	    
