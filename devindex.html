@@ -207,6 +207,7 @@
     		window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
 		document.getElementById('loadingTitle').textContent = "Connecting...";
 		document.getElementById('mainDiv').hidden = true;
+		document.getElementById('allBuildsDiv').hidden = true;
 		document.getElementById('loaderDiv').hidden = false;
 		setTimeout(hideLoadingUI, 10000);
 	}
@@ -216,11 +217,13 @@
 	}
 	    
 	function hideLoadingUI(){
-		document.getElementById('mainDiv').hidden = false;				
+		document.getElementById('mainDiv').hidden = false;
+		document.getElementById('allBuildsDiv').hidden = true;
 		document.getElementById('loaderDiv').hidden = true;
 	}
 	    
 	function showErrorUI(){
+		document.getElementById('allBuildsDiv').hidden = true;
 		document.getElementById('loaderDiv').hidden = true;
 		document.getElementById('errorDiv').hidden = false;
 	}
