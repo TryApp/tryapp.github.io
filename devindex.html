@@ -158,6 +158,7 @@
 	<div id="allBuildsDiv" class="buildDiv" hidden>
 		<p class="miniSubtitle">All Builds</p>
 		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="allBuildButton closeAllBuildButton"> X </button>
+		<hr/>
 		<table id="allBuildTable">
 		</table>
 	</div>
@@ -205,6 +206,18 @@
 	  	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   		ga('create', 'UA-85215717-1', 'auto');
   		ga('send', 'pageview');
+	}
+	    
+	function updatePreviousBuild(versions){
+		var table = document.getElementById("myTable");
+		for (i=0; i<=versions.length; i++){
+			var version = versions[i];
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			cell1.innerHTML = "NEW CELL1";
+			cell2.innerHTML = "NEW CELL2";	
+		}
 	}
 	    
         if (qrStr) {
@@ -260,6 +273,7 @@
 						document.getElementById('loaderDiv').hidden = true;
 						document.title = appTitle + " | AppBox";
 						trackPageName();
+						updatePreviousBuild(response.versions)
 					}
 					catch (err) {
 						showErrorUI();
