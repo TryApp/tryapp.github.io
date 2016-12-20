@@ -85,8 +85,13 @@
 		p.miniSubtitle {
 			color: #666;
 			font-size: 60px;
-			padding: 15px;
+			padding: 15px 30px 10px 15px;
 			margin: 0px;
+		}
+		
+		p.datetime {
+			font-size: 40px;
+			padding: 0px 30px 15px 15px;
 		}
 		
 		button.appBoxButton {
@@ -246,7 +251,7 @@
 			var cell2 = row.insertCell(1);
 			var date = new Date(version.timestamp*1000);
 			var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
-			cell1.innerHTML = '<p class=\"miniSubtitle\">' + version.name + ' ' + version.version + '(' + version.build  +')</p><br/><p class=\"miniSubtitle\">'+datestring+'</p>';
+			cell1.innerHTML = '<p class=\"miniSubtitle\">' + version.name + ' ' + version.version + '(' + version.build  +')</p><p class=\"miniSubtitle datetime\">'+datestring+'</p>';
 			var buttonId = 'appInstall' + i;
 			var menifestLink = version.manifestLink.split("dropbox.com")[1];
 			cell2.innerHTML = '<button id=\"'+buttonId+'\" link=\"'+menifestLink+'\" class=\"installButton allBuildButton\">Install</button>';	
