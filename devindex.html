@@ -244,7 +244,7 @@
 			cell1.innerHTML = '<p class=\"miniSubtitle\">' + version.version + '(' + version.build  +')</p>';
 			var menifestLink = version.manifestLink.split("dropbox.com")[1];
 			menifestLink = menifestLink.replace("/","//");
-			cell2.innerHTML = '<button onclick=\"installApp(\'' ++ '\') class=\"installButton allBuildButton\">Install</button>';	
+			cell2.innerHTML = '<button onclick=\"installApp(\"' +menifestLink+ '\") class=\"installButton allBuildButton\">Install</button>';	
 		}
 	}
 	    
