@@ -87,7 +87,6 @@
 			font-size: 60px;
 			padding: 15px;
 			margin: 0px;
-			float: left;
 		}
 		
 		button.appBoxButton {
@@ -125,6 +124,12 @@
     			margin: 5px;
 		}
 		
+		button.closeAllBuildButton button.allBuildButton{
+			margin: -60px 5px 5px 5px;
+			right: 15px; 
+			position: absolute;
+		}
+		
 	</STYLE>
 </head>
 <body>
@@ -155,7 +160,7 @@
 	</div>
 	<div id="allBuildsDiv" class="buildDiv" hidden>
 		<p class="miniSubtitle">All Builds</p>
-		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="allBuildButton" style="right: 15px; position: absolute;"> X </button>
+		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="closeAllBuildButton"> X </button>
 		<table id="allBuildTable">
 		</table>
 	</div>
