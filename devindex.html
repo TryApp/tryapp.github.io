@@ -274,6 +274,7 @@
 						document.getElementById('installButton').textContent = "Install Application";
             					document.getElementById('mainDiv').hidden = false;
 						document.getElementById('loaderDiv').hidden = true;
+						document.getElementById('showAllBuildButton').hidden = true;
 						document.title = appTitle + " | AppBox";
 						trackPageName();
 					}
@@ -308,7 +309,11 @@
 						document.getElementById('loaderDiv').hidden = true;
 						document.title = appTitle + " | AppBox";
 						trackPageName();
-						updatePreviousBuild(response.versions);
+						if (response.versions.length > 1){
+							updatePreviousBuild(response.versions);   
+						}else{
+							document.getElementById('showAllBuildButton').hidden = true;
+						}
 					}
 					catch (err) {
 						showErrorUI();
