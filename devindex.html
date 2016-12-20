@@ -236,12 +236,12 @@
 	    
 	function updatePreviousBuild(versions){
 		var table = document.getElementById("allBuildTable");
-		for (i=0; i<=versions.length; i++){
+		for (i=0; i<versions.length; i++){
 			var version = versions[i];
 			var row = table.insertRow(i);
 			var cell1 = row.insertCell(0);
 			var cell2 = row.insertCell(1);
-			cell1.innerHTML = "NEW CELL1";
+			cell1.innerHTML = '<p class=\"miniSubtitle\">' + version.version + '(' + version.build  +')</p>';
 			cell2.innerHTML = '<button onclick=\"installApp(' +version.manifestLink.split("dropbox.com")[1]+ ')\" class=\"installButton allBuildButton\">Install</button>';	
 		}
 	}
