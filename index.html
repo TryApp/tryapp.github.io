@@ -243,9 +243,7 @@
 	}
 	    
 	function updatePreviousBuild(versions){
-		versions.sort(function(obj1, obj2){
-			return obj1.timestamp < obj2.timestamp;
-		});
+		versions.reverse();
 		var table = document.getElementById("allBuildTable");
 		for (i=0; i<versions.length; i++){
 			var version = versions[i];
