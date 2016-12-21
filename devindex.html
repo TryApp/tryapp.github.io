@@ -172,9 +172,9 @@
 		</div>
     		<div id="contentDiv" class="contentDiv">
 			<center>
-				<button id="installButton" onclick="installApp()" class="installButton">Install</button>
+				<button id="installButton" onclick="installApp()" class="installButton">Install Latest Version</button>
 				<br />
-				<button id="showAllBuildButton" onclick="showAllBuilds()" class="installButton allBuildButton">Install Previous Builds</button>
+				<button id="showAllBuildButton" onclick="showAllBuilds()" class="installButton allBuildButton">Install Previous Version</button>
 			</center>
     		</div>
 		<div id="footerDiv" class="footerDiv">
@@ -278,7 +278,6 @@
 						document.getElementById('appTitle').textContent = appTitle;
 						document.getElementById('appVersion').textContent = "ver " + appVersion;
 						document.getElementById('appIdentifier').textContent = appIdentifier;
-						document.getElementById('installButton').textContent = "Install Application";
             					document.getElementById('mainDiv').hidden = false;
 						document.getElementById('loaderDiv').hidden = true;
 						document.getElementById('showAllBuildButton').style = "display: none;";
