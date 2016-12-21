@@ -33,6 +33,12 @@
 		div.footerDiv{
 			height: 5%;
 		}
+		
+		div.buildDiv{
+			width: 100%;
+			height: 100%;
+		}
+		
 		p.title {
 			color: #333;
 			font-size: 100px;
@@ -76,6 +82,18 @@
 			position: absolute;
 		}
 		
+		p.miniSubtitle {
+			color: #666;
+			font-size: 60px;
+			padding: 15px 30px 10px 15px;
+			margin: 0px;
+		}
+		
+		p.datetime {
+			font-size: 40px;
+			padding: 0px 30px 15px 15px;
+		}
+		
 		button.appBoxButton {
 			color: #666;
 			border: 0px;
@@ -95,8 +113,48 @@
     			text-decoration: none;
     			display: inline-block;
     			font-size: 80px;
-    			margin: 100px 0px 100px 0px;
+    			margin: 50px 0px 10px 0px;
 		}
+		
+		button.allBuildButton {
+			border: 1px solid #666;
+			border-radius: 5px;
+			background: white;
+    			color: #666;
+    			padding: 10px 20px 10px 20px;
+    			font-size: 50px;
+    			margin: 5px;
+		}
+		
+		button.closeAllBuildButton{
+			margin: -90px 5px 5px 5px;
+			right: 15px; 
+			position: absolute;
+		}
+		
+		.defaultTable{
+			border-collapse:collapse;
+			width:100%
+		}
+		
+		.defaultTable td,.defaultTable th{
+			border:1px solid #ddd;
+			text-align:left;
+			padding:5px;
+			font-size:30px;
+		}
+		
+		.defaultTable tr:nth-child(even){
+			background-color:#f2f2f2
+		}
+		
+		.defaultTable th{
+			padding-top:8px;
+			padding-bottom:8px;
+			background-color:#4285f4;
+			color:#fff
+		}
+		
 	</STYLE>
 </head>
 <body>
@@ -114,7 +172,9 @@
 		</div>
     		<div id="contentDiv" class="contentDiv">
 			<center>
-				<button id="installButton" onclick="installApp()" class="installButton">Install</button>
+				<button id="installButton" onclick="installApp()" class="installButton">Install Latest Version</button>
+				<br />
+				<button id="showAllBuildButton" onclick="showAllBuilds()" class="installButton allBuildButton">Install Previous Version</button>
 			</center>
     		</div>
 		<div id="footerDiv" class="footerDiv">
@@ -122,6 +182,13 @@
 				<button class="appBoxButton" onclick="appPage()">powered by AppBox</button>
 			</center>
 		</div>
+	</div>
+	<div id="allBuildsDiv" class="buildDiv" hidden>
+		<p class="miniSubtitle">All Builds</p>
+		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="allBuildButton closeAllBuildButton"> X </button>
+		<hr/>
+		<table id="allBuildTable">
+		</table>
 	</div>
 	<div id="errorDiv" class="mainDiv" hidden>
 		<div class="headerDiv">
@@ -133,10 +200,19 @@
         qrStr = qrStr.split("?url=")[1];
 	var menifestLinkPath = qrStr;
 	    
-	function installApp() {
-    		window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifestLinkPath;
+	function showAllBuilds(){
+		document.getElementById('mainDiv').hidden = !document.getElementById('mainDiv').hidden;
+		document.getElementById('allBuildsDiv').hidden = !document.getElementById('allBuildsDiv').hidden;
+	}
+	    
+	function installApp(menifest) {
+		if (menifest == null){
+			menifest = menifestLinkPath;
+		}
+    		window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
 		document.getElementById('loadingTitle').textContent = "Connecting...";
 		document.getElementById('mainDiv').hidden = true;
+		document.getElementById('allBuildsDiv').hidden = true;
 		document.getElementById('loaderDiv').hidden = false;
 		setTimeout(hideLoadingUI, 10000);
 	}
@@ -146,11 +222,13 @@
 	}
 	    
 	function hideLoadingUI(){
-		document.getElementById('mainDiv').hidden = false;				
+		document.getElementById('mainDiv').hidden = false;
+		document.getElementById('allBuildsDiv').hidden = true;
 		document.getElementById('loaderDiv').hidden = true;
 	}
 	    
 	function showErrorUI(){
+		document.getElementById('allBuildsDiv').hidden = true;
 		document.getElementById('loaderDiv').hidden = true;
 		document.getElementById('errorDiv').hidden = false;
 	}
@@ -162,6 +240,29 @@
 	  	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   		ga('create', 'UA-85215717-1', 'auto');
   		ga('send', 'pageview');
+	}
+	    
+	function updatePreviousBuild(versions){
+		versions.sort(function(obj1, obj2){
+			return obj1.timestamp < obj2.timestamp;
+		});
+		var table = document.getElementById("allBuildTable");
+		for (i=0; i<versions.length; i++){
+			var version = versions[i];
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var date = new Date(version.timestamp*1000);
+			var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+			cell1.innerHTML = '<p class=\"miniSubtitle\">' + version.name + ' ' + version.version + '(' + version.build  +')</p><p class=\"miniSubtitle datetime\">'+datestring+'</p>';
+			var buttonId = 'appInstall' + i;
+			var menifestLink = version.manifestLink.split("dropbox.com")[1];
+			cell2.innerHTML = '<button id=\"'+buttonId+'\" link=\"'+menifestLink+'\" class=\"installButton allBuildButton\">Install</button>';	
+			var button = document.getElementById(buttonId);
+			button.addEventListener('click', function(){
+				installApp(this.getAttribute("link"));
+			});
+		}
 	}
 	    
         if (qrStr) {
@@ -183,6 +284,7 @@
 						document.getElementById('installButton').textContent = "Install Application";
             					document.getElementById('mainDiv').hidden = false;
 						document.getElementById('loaderDiv').hidden = true;
+						document.getElementById('showAllBuildButton').style = "display: none;";
 						document.title = appTitle + " | AppBox";
 						trackPageName();
 					}
@@ -213,10 +315,15 @@
 						document.getElementById('appVersion').textContent = "ver " + appVersion;
 						document.getElementById('appIdentifier').textContent = appIdentifier;
 						document.getElementById('installButton').textContent = "Install Application";
-            					document.getElementById('mainDiv').hidden = false;
-						document.getElementById('loaderDiv').hidden = true;
 						document.title = appTitle + " | AppBox";
 						trackPageName();
+						if (response.versions.length > 1){
+							updatePreviousBuild(response.versions);   
+						}else{
+							document.getElementById('showAllBuildButton').style = "display: none;";
+						}
+						document.getElementById('mainDiv').hidden = false;
+						document.getElementById('loaderDiv').hidden = true;
 					}
 					catch (err) {
 						showErrorUI();
