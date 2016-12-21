@@ -284,7 +284,7 @@
 						document.getElementById('installButton').textContent = "Install Application";
             					document.getElementById('mainDiv').hidden = false;
 						document.getElementById('loaderDiv').hidden = true;
-						document.getElementById('showAllBuildButton').style = "display: none;";
+						document.getElementById('showAllBuildButton').style = "display: none";
 						document.title = appTitle + " | AppBox";
 						trackPageName();
 					}
@@ -320,7 +320,7 @@
 						if (response.versions.length > 1){
 							updatePreviousBuild(response.versions);   
 						}else{
-							document.getElementById('showAllBuildButton').style = "display: none;";
+							document.getElementById('showAllBuildButton').style = "display: none";
 						}
 						document.getElementById('mainDiv').hidden = false;
 						document.getElementById('loaderDiv').hidden = true;
