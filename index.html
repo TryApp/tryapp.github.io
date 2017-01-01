@@ -10,12 +10,30 @@
     <link rel="stylesheet" href="css/cayman.css">
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Cayman</h1>
-      <h2 class="project-tagline">A responsive theme for your project on GitHub Pages</h2>
-      <a href="#" class="btn">View on GitHub</a>
-      <a href="#" class="btn">Download .zip</a>
-      <a href="#" class="btn">Download .tar.gz</a>
+	<section id="loaderDiv" class="main-content">
+		<center>
+			<img style="margin:200px;" src="loading.gif" alt="loading..." height="125" width="125">
+			<p id="loadingTitle" class="project-tagline">loading...</p>
+		</center>
+	</section> 
+    <section id="mainDiv" class="page-header">
+	    <div id="headerDiv" class="headerDiv">
+		    	<h1 id="appTitle" class="project-name">Wait..."</h1>
+			<p id="appIdentifier" class="project-tagline">Wait...</p>
+			<p id="appVersion" class="project-tagline">Wait...</p>
+		</div>
+    		<div id="contentDiv" class="contentDiv">
+			<center>
+				<button id="installButton" onclick="installApp()" class="btn">Install Latest Version</button>
+				<br />
+				<button id="showAllBuildButton" onclick="showAllBuilds()" class="btn allBuildButton">Install Previous Version</button>
+			</center>
+    		</div>
+		<div id="footerDiv" class="footerDiv">
+			<center>
+				<button class="btn" style="border:'0px';" onclick="appPage()">powered by AppBox</button>
+			</center>
+		</div>
     </section>
 
     <section id="allbuild" class="main-content">
