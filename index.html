@@ -12,28 +12,26 @@
   <body>
 	  <section id="loaderDiv" class="main-content">
 		<center>
-			<img style="margin:200px;" src="img/loading.gif" alt="loading..." height="125" width="125">
+			<img src="img/loading.gif" alt="loading..." height="50" width="50">
 			<p id="loadingTitle" class="project-tagline">loading...</p>
 		</center>
 	</section> 
-    <section id="mainDiv" class="page-header" hidden>
+    <section id="mainDiv" hidden>
 	    <div id="headerDiv" class="headerDiv">
 		    	<h1 id="appTitle" class="project-name">Wait...</h1>
 			<p id="appIdentifier" class="project-tagline">Wait...</p>
 			<p id="appVersion" class="project-tagline">Wait...</p>
 		</div>
+	    	<br/>
     		<div id="contentDiv" class="contentDiv">
 			<center>
 				<button id="installButton" onclick="installApp()" class="btn">Install Latest Version</button>
-				<br />
 				<button id="showAllBuildButton" onclick="showAllBuilds()" class="btn allBuildButton">Install Previous Version</button>
 			</center>
     		</div>
-		<div id="footerDiv" class="footerDiv">
-			<center>
-				<button class="btn" style="border:'0px';" onclick="appPage()">powered by AppBox</button>
-			</center>
-		</div>
+	    	<footer  id="footerDiv" class="site-footer">
+	 		<span class="site-footer-credits">powered by <a href="https://tryappbox.github.io">AppBox</a>.</span>
+ 		</footer>
     </section>
 
     <section id="allBuildsDiv" class="main-content" hidden>
