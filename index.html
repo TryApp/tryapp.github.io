@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Cayman</title>
+    <title>AppBox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="css/normalize.css">
@@ -18,7 +18,17 @@
       <a href="#" class="btn">Download .tar.gz</a>
     </section>
 
-    <section class="main-content">
+    <section id="allbuild" class="main-content">
+		    <p class="miniSubtitle">All Builds</p>
+		    <button id="hideAllBuildsButton" onClick="showAllBuilds()" class="allBuildButton closeAllBuildButton"> X </button>
+		    <hr/>
+		    <table id="allBuildTable">
+		    </table>
+    </section>
+    <section id="errorDiv" class="main-content" hidden>
+			  <p>The app you were looking for is not available anymore. It might has been deleted. Please refer to your app developer for any question.</p>
+    </section>
+    
       <p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>. <a href="https://github.com">Links</a> should be blue with no underlines (unless hovered over).</p>
 
       <p>There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.</p>
