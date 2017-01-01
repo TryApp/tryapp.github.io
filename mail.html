@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+	<head>
+		<title>AppBox Gmail API</title>
+    		<meta charset="UTF-8">	
+   		 <style  type="text/css">
+    			h1 {
+			color: #333;
+			font-size: 30px;
+			font-weight:100;
+			padding: 0px;
+			text-align: center;
+			}
+      
+			button {
+   			border: 2px solid green;
+	  		background:white;
+   			color: green;
+   			padding: 5px 5px;
+   			text-align: center;
+   			text-decoration: none;
+   			display: inline-block;
+   			font-size: 30px;
+   			margin: 10px 0px 10px 0px;
+			}
+    		</style>
+  	</head>
+	<body>
+		<div id="container" hidden>
+			<h1 id="hint-label">Send with your Gmail account</h1>
+			<center>
+			<button id="authorize-button">Authorize</button>
+			</center>
+		</div>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			var clientId = '689924722616-j9di5up7djqcmjugmld4q9kq4l0iccoe.apps.googleusercontent.com';
+			var apiKey = 'AIzaSyB7Qf2E53aIV42faWMaWurmw7fGacK6p4A';
+			var scopes = 'https://www.googleapis.com/auth/gmail.send';
+			
+			function handleClientLoad() {
+				gapi.client.setApiKey(apiKey);
+				window.setTimeout(checkAuth, 1);
+			}
+
+			function checkAuth() {
+				gapi.auth.authorize({
+					client_id: clientId,
+					scope: scopes,
+					immediate: true
+				}, handleAuthResult);
+			}
+			
+			function handleAuthClick() {
+				gapi.auth.authorize({
+					client_id: clientId,
+					scope: scopes,
+					immediate: false
+				}, handleAuthResult);
+				return false;
+			}
+			
+			function handleAuthResult(authResult) {
+				$('#container').show();
+				if(authResult && !authResult.error) {
+					loadGmailApi();
+					$('#authorize-button').remove();
+				} else {
+					$('#authorize-button').on('click', function(){
+						handleAuthClick();
+					});
+				}
+			}
+			
+			function loadGmailApi() {
+				gapi.client.load('gmail', 'v1', displayInbox);
+			}
+      
+      function displayInbox() {
+        var qrStr = window.location.search;
+        if (qrStr.length > 0){
+          sendEmail();
+        }else{
+		document.title = 'LoginSuccess';
+          $('#hint-label').text('Login Success');
+        }
+      }
+  
+      function sendEmail(){
+        var qrStr = window.location.search;
+        if (qrStr.split('?to=').length == 2){
+          console.log(qrStr);
+          var toEmail = decodeURI((qrStr.split('?to=')[1]).split('&')[0]);
+          console.log(toEmail);
+          var appName = decodeURI((qrStr.split('&app=')[1]).split('&')[0]);
+          console.log(appName);
+          var version = decodeURI((qrStr.split('&ver=')[1]).split('&')[0]);
+          console.log(version);
+	  var build = decodeURI((qrStr.split('&build=')[1]).split('&')[0]);
+          console.log(build);
+	  var link = decodeURI((qrStr.split('&link=')[1]).split('&')[0]);
+          console.log(link);
+	  var devmsg = decodeURI((qrStr.split('&devmsg=')[1]));
+          console.log(devmsg);
+	  var subject = appName + ' ' + version + '(' + build + ') is ready to test - AppBox';
+       	 var body = '<html><body><h1 style=\"color: #333; font-size: 25px; font-weight:50; padding: 0px; text-align: center;\">' +appName + ' ' + version + '(' + build + ') for iOS is ready to test.</h1> <center> <a href=\"'+link+'\" style=\"color: green; text-align: center; font-size: 30px;\">' +link+ '</a></center><p style=\"color: #333; font-size: 20px; text-align: center;\">To test this app, open above url on your iOS device and install the app.</p>';
+	if (devmsg.length > 0){
+		body += '<hr/><blockquote style=\"background:#FFF8DC; color: #333; font-size: 15px; padding : 12px\">Message from Developer : <br>' +devmsg+ '</blockquote><hr/>'
+	}
+	body += '<p style=\"color: #333; font-size: 10px;">This is an auto-generated mail by <a href=\"https://github.com/vineetchoudhary/AppBox-iOSAppsWirelessInstallation\">AppBox - Build, Test and Distribute iOS Apps</a>. Reply to this email, it will directly go to the developer.</p>'
+	body += '</body></html>';
+          sendMessage(
+            {
+              'To': toEmail,
+              'Subject': subject,
+		'Content-Type': 'text/html'
+            },
+            body,
+            replyTidy
+          );
+        }else{
+		document.title = 'InvalidPerameter';
+          $('#hint-label').text('Invalid Perameter');
+        }
+        return false;
+      }
+      
+      function replyTidy(){
+	      document.title = 'MailSent';
+	        $('#hint-label').text('Mail Sent');
+      }
+
+      function sendMessage(headers_obj, message, callback){
+        var email = '';
+        for(var header in headers_obj)
+          email += header += ": "+headers_obj[header]+"\r\n";
+        email += "\r\n" + message;
+        var sendRequest = gapi.client.gmail.users.messages.send({
+          'userId': 'me',
+          'resource': {
+            'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
+          }
+        });
+        return sendRequest.execute(callback);
+      }
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+  </body>
+</html>
