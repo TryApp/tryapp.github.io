@@ -1,201 +1,54 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>AppBox - Distribution of iOS app with your Dropbox account.</title>
-	<STYLE type="text/css">
-		body {
-			min-width: 100%;
-			min-height: 100%;
-			background:white !important;
-		}
-		
-		html {
-			width: 100%;
-			height: 95%;
-		}
-		
-		div.mainDiv {
-			width: 100%;
-			height: 95%;
-		}
-
-		div.loadDiv{
-
-		}
-		
-		div.headerDiv{
-			height: 24%;
-		}
-		
-		div.contentDiv{
-			height: 70%;
-		}
-		
-		div.footerDiv{
-			height: 5%;
-		}
-		
-		div.buildDiv{
-			width: 100%;
-			height: 100%;
-		}
-		
-		p.title {
-			color: #333;
-			font-size: 100px;
-			font-weight:100;
-			padding: 0px;
-			text-align: center;
-		}
-		
-		p.subtitle {
-			color: #666;
-			font-size: 60px;
-			text-align: center;
-			padding: 0px;
-			width: 100%;
-			margin: -100px 0px 0px 0px;
-		}
-
-		p.loading {
-			color: #666;
-			font-size: 60px;
-			text-align: center;
-			padding: 0px;
-			width: 100%;
-			margin: -180px 0px 0px 0px;
-		}
-
-		p.version {
-			color: #666;
-			font-size: 45px;
-			text-align: center;
-			padding: 0px;
-			width: 100%;
-			margin: 0px 0px 0px 0px;
-		}
-		
-		p.footer {
-			color: #666;
-			font-size: 80px;
-			text-align: center;
-			margin: 0 auto;
-			position: absolute;
-		}
-		
-		p.miniSubtitle {
-			color: #666;
-			font-size: 60px;
-			padding: 15px 30px 10px 15px;
-			margin: 0px;
-		}
-		
-		p.datetime {
-			font-size: 40px;
-			padding: 0px 30px 15px 15px;
-		}
-		
-		button.appBoxButton {
-			color: #666;
-			border: 0px;
-			background: white;
-			font-size: 80px;
-			text-align: center;
-			margin: 0 auto;
-		}
-
-		button.installButton {
-			border: 2px solid green;
-			border-radius: 15px;
-			background: white;
-    			color: green;
-    			padding: 15px 32px;
-    			text-align: center;
-    			text-decoration: none;
-    			display: inline-block;
-    			font-size: 80px;
-    			margin: 50px 0px 10px 0px;
-		}
-		
-		button.allBuildButton {
-			border: 1px solid #666;
-			border-radius: 5px;
-			background: white;
-    			color: #666;
-    			padding: 10px 20px 10px 20px;
-    			font-size: 50px;
-    			margin: 5px;
-		}
-		
-		button.closeAllBuildButton{
-			margin: -90px 5px 5px 5px;
-			right: 15px; 
-			position: absolute;
-		}
-		
-		.defaultTable{
-			border-collapse:collapse;
-			width:100%
-		}
-		
-		.defaultTable td,.defaultTable th{
-			border:1px solid #ddd;
-			text-align:left;
-			padding:5px;
-			font-size:30px;
-		}
-		
-		.defaultTable tr:nth-child(even){
-			background-color:#f2f2f2
-		}
-		
-		.defaultTable th{
-			padding-top:8px;
-			padding-bottom:8px;
-			background-color:#4285f4;
-			color:#fff
-		}
-		
-	</STYLE>
-</head>
-<body>
-	<div id="loaderDiv" class="mainDiv">
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>AppBox</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+  </head>
+  <body>
+	  <section id="loaderDiv" class="main-content">
 		<center>
-			<img style="margin:200px;" src="loading.gif" alt="loading..." height="125" width="125">
-			<p id="loadingTitle" class="loading">loading...</p>
+			<img src="img/loading.gif" alt="loading..." height="50" width="50">
+			<p id="loadingTitle" class="project-tagline">loading...</p>
 		</center>
-	</div>
-	<div id="mainDiv" class="mainDiv" hidden>
-		<div id="headerDiv" class="headerDiv">
-		    	<p id="appTitle" class="title">Wait..."</p>
-			<p id="appIdentifier" class="subtitle">Wait...</p>
-			<p id="appVersion" class="version">Wait...</p>
-		</div>
-    		<div id="contentDiv" class="contentDiv">
-			<center>
-				<button id="installButton" onclick="installApp()" class="installButton">Install Latest Version</button>
-				<br />
-				<button id="showAllBuildButton" onclick="showAllBuilds()" class="installButton allBuildButton">Install Previous Version</button>
-			</center>
+	</section> 
+    <section id="mainDiv" class="page-header" hidden>
+	    <div id="headerDiv">
+		    <h1 id="appTitle" class="project-name">Wait...</h1>
+			  <p id="appIdentifier" class="project-tagline">Wait...</p>
+			  <p id="appVersion" class="project-tagline">Wait...</p>
+		  </div>
+	    	<br/>
+        <br/>
+    		<div id="contentDiv">
+			    <center>
+			  	  <button id="installButton" onclick="installApp()" class="btn">Install Latest Version</button>
+			  	  <button id="showAllBuildButton" onclick="showAllBuilds()" class="btn">Install Previous Version(s)</button>
+		  	  </center>
     		</div>
-		<div id="footerDiv" class="footerDiv">
-			<center>
-				<button class="appBoxButton" onclick="appPage()">powered by AppBox</button>
-			</center>
-		</div>
-	</div>
-	<div id="allBuildsDiv" class="buildDiv" hidden>
-		<p class="miniSubtitle">All Builds</p>
-		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="allBuildButton closeAllBuildButton"> X </button>
-		<hr/>
-		<table id="allBuildTable">
-		</table>
-	</div>
-	<div id="errorDiv" class="mainDiv" hidden>
-		<div class="headerDiv">
-			<p class="footer">The app you were looking for is not available anymore. It might has been deleted. Please refer to your app developer for any question.</p>
-		</div>
-	</div>
-    <script>
+        <br>
+	      <footer class="site-footer">
+	 			  <span class="site-footer-credits">powered by </span><a class="site-footer-link" href="https://tryappbox.github.io">AppBox</a>
+ 			  </footer>
+    </section>
+
+    <section id="allBuildsDiv" class="page-header main-content" hidden>
+		  <p class="project-name build-project-name">All Builds</p>
+		  <button id="hideAllBuildsButton" onClick="showAllBuilds()" class="btn buildCloseBtn"> X </button>
+		  <hr>
+		  <table id="allBuildTable">
+		  </table>
+    </section>
+	  
+    <section id="errorDiv" class="main-content" hidden>
+	  	<p class="project-tagline">The app you were looking for is not available anymore. It might has been deleted. Please refer to your app developer for any question.</p>
+    </section>
+	  
+	<script>
 	var qrStr = window.location.search;
         qrStr = qrStr.split("?url=")[1];
 	var menifestLinkPath = qrStr;
@@ -209,7 +62,7 @@
 		if (menifest == null){
 			menifest = menifestLinkPath;
 		}
-    		window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
+    window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
 		document.getElementById('loadingTitle').textContent = "Connecting...";
 		document.getElementById('mainDiv').hidden = true;
 		document.getElementById('allBuildsDiv').hidden = true;
@@ -252,10 +105,11 @@
 			var cell2 = row.insertCell(1);
 			var date = new Date(version.timestamp*1000);
 			var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
-			cell1.innerHTML = '<p class=\"miniSubtitle\">' + version.name + ' ' + version.version + '(' + version.build  +')</p><p class=\"miniSubtitle datetime\">'+datestring+'</p>';
+			cell1.innerHTML = '<p class=\"project-tagline build-project-tagline\">' + version.name + ' ' + version.version + '(' + version.build  +')</p><p class=\"project-tagline build-project-tagline\">'+datestring+'</p>';
 			var buttonId = 'appInstall' + i;
 			var menifestLink = version.manifestLink.split("dropbox.com")[1];
-			cell2.innerHTML = '<button id=\"'+buttonId+'\" link=\"'+menifestLink+'\" class=\"installButton allBuildButton\">Install</button>';	
+			cell2.innerHTML = '<button id=\"'+buttonId+'\" link=\"'+menifestLink+'\" class=\"btn buildBtn\">Install</button>';
+      cell2.style = "text-align: right";	
 			var button = document.getElementById(buttonId);
 			button.addEventListener('click', function(){
 				installApp(this.getAttribute("link"));
@@ -312,12 +166,13 @@
 						document.getElementById('appTitle').textContent = appTitle;
 						document.getElementById('appVersion').textContent = "ver " + appVersion;
 						document.getElementById('appIdentifier').textContent = appIdentifier;
-						document.getElementById('installButton').textContent = "Install Application";
 						document.title = appTitle + " | AppBox";
 						trackPageName();
 						if (response.versions.length > 1){
+              document.getElementById('installButton').textContent = "Install Latest Version";
 							updatePreviousBuild(response.versions);   
 						}else{
+              document.getElementById('installButton').textContent = "Install Application";
 							document.getElementById('showAllBuildButton').style.display = 'none';
 						}
 						document.getElementById('mainDiv').hidden = false;
@@ -339,7 +194,7 @@
 		}
 	}else {
 		appPage();
-        }
+    }
     </script>
-</body>
+  </body>
 </html>
