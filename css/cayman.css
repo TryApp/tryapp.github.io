@@ -70,8 +70,8 @@ a {
     }}
 
 .page-header {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   color: #fff;
   text-align: center;
   background-color: #159957;
