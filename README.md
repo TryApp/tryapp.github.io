@@ -1,5 +1,5 @@
-# TryApp Development Repository
-Development Repo of AppBox Installation Web App.Available here https://tryapp.github.io/development/
+# AppBox Installation Web App Repository
+Production Repo of AppBox Installation Web App. Available here at https://tryapp.github.io/
 
 
 # Contributions ❤️
