@@ -169,7 +169,7 @@
 				if (client.readyState == 4  && client.status == 200) {
             		try{
 						menifestLinkPath = qrStr;
-						var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
+						var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.() ]/g),'');
 						var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
 						var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
 						var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
