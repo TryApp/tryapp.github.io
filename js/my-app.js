@@ -15,7 +15,6 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-var mainView = myApp.addView('.view-main') 
 
 
 var qrStr = window.location.search;
@@ -108,5 +107,5 @@ function installApp(menifest) {
         menifest = menifestLinkPath;
     }
     window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
-    mainView.router.load({pageName: 'post-install'});
+    myApp.mainView.router.load({pageName: 'post-install'});
 }
