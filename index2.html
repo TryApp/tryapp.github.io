@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>AppBox</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+	<script src="lib/qrcode.js"></script>
+	<style type="text/css">
+		.adslot_1 { width: 320px; height: 100px; }@media screen and (min-width:500px) { .adslot_1 { width: 468px; height: 60px; } }@media screen and (min-width:800px) { .adslot_1 { width: 728px; height: 90px; } }
+	</style>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+		google_ad_client: "ca-pub-3139212365885959",
+		enable_page_level_ads: true
+	  });
+	</script>
+  </head>
+  <body>
+	<section id="loaderDiv" class="main-content">
+		<center>
+			<img src="img/loading.gif" alt="loading..." height="50" width="50">
+			<p id="loadingTitle" class="project-tagline">loading...</p>
+		</center>
+	</section> 
+    <section id="mainDiv" class="page-header" hidden>
+	    <div id="headerDiv">
+			<h1 id="appTitle" class="project-name">Wait...</h1>
+			<p id="appIdentifier" class="project-tagline">Wait...</p>
+			<p id="appVersion" class="project-tagline">Wait...</p>
+		</div>
+	    <br/>
+        <br/>
+   		<div id="contentDiv">
+	    <center>
+			<button id="installButton" onclick="installApp()" class="btn">Install Latest Version</button>
+			<button id="showAllBuildButton" onclick="showAllBuilds()" class="btn">Install Previous Version(s)</button>
+			<button id="showQRCodeButton" onclick="showQRCode()" class="btn">Show QR Code</button>
+		</center>
+		</div>
+		<br />
+		<footer class="site-footer" style=" left: 0px; right: 0px; bottom: 0px;">
+			<center>
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<ins class="adsbygoogle adslot_1"
+						 style="display:block"
+						 data-ad-client="ca-pub-3139212365885959"
+						 data-ad-slot="5702922209"
+						 data-ad-format="auto"></ins>
+					<script>
+						window.onload = function() {
+ 						   (adsbygoogle = window.adsbygoogle || []).push({});
+						}
+					</script>
+			</center>
+		</footer>
+    </section>
+
+	<section id="overlay" class="page-header main-content overlaySection" hidden></section>
+
+	<section id="qrcodeDiv" class="page-header main-content qrCodeSection" hidden>
+		<div>
+			<p class="project-name qrCodeTitle">Scan</p>
+			<button id="hideQRCodeButton" onClick="showQRCode()" class="btn qrCodeCloseBtn"> X </button>
+			<hr>
+			<center>
+				<div id="container"></div>
+			</center>
+		</div>
+	</section>
+
+    <section id="allBuildsDiv" class="page-header main-content" hidden>
+		<p class="project-name build-project-name">All Builds</p>
+		<button id="hideAllBuildsButton" onClick="showAllBuilds()" class="btn buildCloseBtn"> X </button>
+		<hr>
+		<table id="allBuildTable"></table>
+    </section>
+	  
+    <section id="errorDiv" class="main-content" hidden>
+		<p class="project-tagline">The app you were looking for is not available anymore. It might has been deleted. Please refer to your app developer for any question.</p>
+    </section>
+
+	<section id="installDiv" class="page-header main-content" hidden>
+	  	<p id="installationTitle" class="project-tagline">Installing...</p>
+		<br />
+		<p class="project-tagline">Note that the app's icon might appear on any of your Home screens.</p>
+		<footer class="site-footer">
+			<span class="site-footer-credits">need </span><a class="site-footer-link" target="_blank" href="/help/">help?</a>
+			<center>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<ins class="adsbygoogle adslot_1"
+					 style="display:block"
+					 data-ad-client="ca-pub-3139212365885959"
+					 data-ad-slot="5702922209"
+					 data-ad-format="auto"></ins>
+				<script>
+					window.onload = function() {
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					}
+				</script>
+		</center>
+		</footer>
+    </section>
+	  
+	<script>
+	var qrStr = window.location.search;
+    qrStr = qrStr.split("?url=")[1];
+	var menifestLinkPath = qrStr;
+
+	var qrcode = new QRCode(document.getElementById("container"), {
+		width : 250,
+		height : 250
+	});
+	qrcode.makeCode(window.location.href);
+
+	function showAllBuilds(){
+		document.getElementById('mainDiv').hidden = !document.getElementById('mainDiv').hidden;
+		document.getElementById('allBuildsDiv').hidden = !document.getElementById('allBuildsDiv').hidden;
+	}
+
+	function showQRCode(){
+		document.getElementById('overlay').hidden = !document.getElementById('overlay').hidden;
+		document.getElementById('qrcodeDiv').hidden = !document.getElementById('qrcodeDiv').hidden;
+	}
+	    
+	function installApp(menifest) {
+		if (menifest == null){
+			menifest = menifestLinkPath;
+		}
+    	window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
+		document.getElementById('mainDiv').hidden = true;
+		document.getElementById('allBuildsDiv').hidden = true;
+		document.getElementById('loaderDiv').hidden = true;
+		document.getElementById('installDiv').hidden = false;
+		setTimeout(hideLoadingUI, 60000);
+	}
+	    
+	function appPage() {
+    	window.location.href = "https://github.com/vineetchoudhary/AppBox-iOSAppsWirelessInstallation";
+	}
+	    
+	function hideLoadingUI(){
+		document.getElementById('mainDiv').hidden = false;
+		document.getElementById('allBuildsDiv').hidden = true;
+		document.getElementById('loaderDiv').hidden = true;
+		document.getElementById('installDiv').hidden = true;
+	}
+	    
+	function showErrorUI(){
+		document.getElementById('allBuildsDiv').hidden = true;
+		document.getElementById('loaderDiv').hidden = true;
+		document.getElementById('errorDiv').hidden = false;
+		document.getElementById('installDiv').hidden = true;
+	}
+	    
+	function trackPageName(){
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  		ga('create', 'UA-85215717-1', 'auto');
+  		ga('send', 'pageview');
+	}
+
+	function updateInstallationMessage(title){
+		document.getElementById('installationTitle').textContent = "By now, you should have seen an iOS popup proposing to install \""+ title 
+		+"\" .  Please confirm the installation dialog, then press your Home button to see the installation progress. ";
+	}
+	    
+	function updatePreviousBuild(versions){
+		versions.reverse();
+		var table = document.getElementById("allBuildTable");
+		for (i=0; i<versions.length; i++){
+			var version = versions[i];
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+
+			//setup info
+			var date = new Date(version.timestamp*1000);
+			var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+			cell1.innerHTML = '<p class=\"project-tagline build-project-tagline\">' + version.name + ' ' + version.version + '(' + version.build  +')</p><p class=\"project-tagline build-project-tagline\">'+datestring+'</p>';
+
+			var installButtonId = 'appInstall' + i;
+			var menifestLink = version.manifestLink.split("dropbox.com")[1];
+			cell2.innerHTML = '<button id=\"'+installButtonId+'\" link=\"'+menifestLink+'\" class=\"btn buildBtn\">Install</button>';
+      		cell2.style = "text-align: right";	
+			var installButton = document.getElementById(installButtonId);
+			installButton.addEventListener('click', function(){
+				installApp(this.getAttribute("link"));
+			});
+		}
+	}
+	    
+    if (qrStr) {
+		if (qrStr.indexOf('manifest.plist') != -1){
+			var client = new XMLHttpRequest();
+			client.timeout = 60000;
+			client.onreadystatechange = function() {
+				if (client.readyState == 4  && client.status == 200) {
+            		try{
+						menifestLinkPath = qrStr;
+						var response =  client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g),'');
+						var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
+						var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
+						var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
+						var appVersion =  response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
+						document.getElementById('appTitle').textContent = appTitle;
+						document.getElementById('appVersion').textContent = "ver " + appVersion;
+						document.getElementById('appIdentifier').textContent = appIdentifier;
+						document.getElementById('installButton').textContent = "Install Application";
+            					document.getElementById('mainDiv').hidden = false;
+						document.getElementById('loaderDiv').hidden = true;
+						document.getElementById('showAllBuildButton').style.display = 'none';
+						document.title = appTitle + " | AppBox";
+						trackPageName();
+						updateInstallationMessage(appTitle);
+					}
+					catch (err) {
+						showErrorUI();
+					}
+        		}else if (client.status >= 400){
+					showErrorUI();
+				}
+			};
+			client.open('GET', 'https://dl.dropboxusercontent.com' + qrStr);
+			client.setRequestHeader('Content-Type', 'text/xml');
+			client.overrideMimeType('text/xml')
+			client.send();
+		}else if (qrStr.indexOf('appinfo.json') != -1){
+			var client = new XMLHttpRequest();
+			client.timeout = 60000;
+			client.onreadystatechange = function() {
+				if (client.readyState == 4  && client.status == 200) {
+            		try{
+						var response =  JSON.parse(client.responseText);
+						menifestLinkPath = response.latestVersion.manifestLink.split("dropbox.com")[1];
+						var first = response.latestVersion.build;
+						var appTitle = response.latestVersion.name;
+						var appIdentifier = response.latestVersion.identifier;
+						var appVersion =  response.latestVersion.version;
+						document.getElementById('appTitle').textContent = appTitle;
+						document.getElementById('appVersion').textContent = "ver " + appVersion;
+						document.getElementById('appIdentifier').textContent = appIdentifier;
+						document.title = appTitle + " | AppBox";
+						trackPageName();
+						updateInstallationMessage(appTitle);
+						if (response.versions.length > 1){
+							document.getElementById('installButton').textContent = "Install Latest Version";
+							updatePreviousBuild(response.versions);   
+						}else{
+							document.getElementById('installButton').textContent = "Install Application";
+							document.getElementById('showAllBuildButton').style.display = 'none';
+						}
+						document.getElementById('mainDiv').hidden = false;
+						document.getElementById('loaderDiv').hidden = true;
+					}
+					catch (err) {
+						showErrorUI();
+					}
+        		}else if (client.status >= 400){
+					showErrorUI();
+				}
+			};
+			client.open('GET', 'https://dl.dropboxusercontent.com' + qrStr);
+			client.setRequestHeader('Content-Type', 'text/xml');
+			client.overrideMimeType('text/xml')
+			client.send();
+		}else{
+			showErrorUI();			  
+		}
+	}else {
+		appPage();
+    }
+	</script>
+  </body>
+</html>
