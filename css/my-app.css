@@ -17,7 +17,7 @@
 }
 
 .adslot_1 { 
-  width: 300px; height: 250px; 
+  display: block; width: 300px; height: 250px; 
 }
 @media screen and (min-width:414px) { 
   .adslot_1 { 
