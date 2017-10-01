@@ -15,3 +15,16 @@
     display: none;
   }
 }
+
+.adslot_1 { 
+  width: 320px; height: 100px; 
+}
+@media screen and (min-width:500px) { 
+  .adslot_1 { 
+    width: 468px; height: 60px; 
+  } 
+}@media screen and (min-width:800px) { 
+  .adslot_1 { 
+    width: 728px; height: 90px; 
+  } 
+}
