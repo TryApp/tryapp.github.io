@@ -30,7 +30,7 @@
       <div class="pages">
         <div data-page="index-left" class="page">
           <div class="page-content">
-            <div class="content-block-title">Left View Links</div>
+            <div class="content-block-title">AppBox</div>
             <div class="list-block">
               <ul>
                 <li>
@@ -137,25 +137,31 @@
             <div class="list-block">
               <ul>
                 <li>
-                  <div class="item-content">
-                    <div class="item-inner">
-                      <div id="installButton" class="item-title">Install Latest Version</div>
+                  <a href="download.html" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div id="installButton" class="item-title">Install Latest Version</div>
+                      </div>
                     </div>
-                  </div>
+                  </a>
+                </li>
+                <li id="showAllBuildButton">
+                  <a href="all.html" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Install Previous Version(s)</div>
+                      </div>
+                    </div>
+                  </a>
                 </li>
                 <li>
-                  <div class="item-content">
-                    <div class="item-inner">
-                      <div id="showAllBuildButton" class="item-title">Install Previous Version(s)</div>
+                  <a href="qr.html" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div id="showQRCodeButton" class="item-title">Show QR Code</div>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item-content">
-                    <div class="item-inner">
-                      <div id="showQRCodeButton" class="item-title">Show QR Code</div>
-                    </div>
-                  </div>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -183,7 +189,7 @@
               var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
               var appVersion = response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
               document.getElementById('appTitle').textContent = appTitle;
-              document.getElementById('appVersion').textContent = "ver " + appVersion;
+              document.getElementById('appVersion').textContent = appVersion;
               document.getElementById('appIdentifier').textContent = appIdentifier;
               document.getElementById('installButton').textContent = "Install Application";
               document.getElementById('mainDiv').hidden = false;
@@ -217,7 +223,7 @@
               var appIdentifier = response.latestVersion.identifier;
               var appVersion = response.latestVersion.version;
               document.getElementById('appTitle').textContent = appTitle;
-              document.getElementById('appVersion').textContent = "ver " + appVersion;
+              document.getElementById('appVersion').textContent = appVersion;
               document.getElementById('appIdentifier').textContent = appIdentifier;
               document.title = appTitle + " | AppBox";
               //trackPageName();
