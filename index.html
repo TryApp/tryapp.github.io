@@ -185,7 +185,7 @@
               document.getElementById('installButton').textContent = "Install Application";
               document.getElementById('mainDiv').hidden = false;
               document.getElementById('loaderDiv').hidden = true;
-              document.getElementById('showAllBuildButton').style.display = 'none';
+              document.getElementById('showAllBuildButton').hidden = true;
               document.title = appTitle + " | AppBox";
               //trackPageName();
               //updateInstallationMessage(appTitle);
@@ -224,7 +224,7 @@
                 updatePreviousBuild(response.versions);
               } else {
                 document.getElementById('installButton').textContent = "Install Application";
-                document.getElementById('showAllBuildButton').style.display = 'none';
+                document.getElementById('showAllBuildButton').hidden = true;
               }
               document.getElementById('mainDiv').hidden = false;
               document.getElementById('loaderDiv').hidden = true;
