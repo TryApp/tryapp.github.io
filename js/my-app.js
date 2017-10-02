@@ -126,7 +126,5 @@ function insertAdsOnDiv(divId){
       <ins class="adsbygoogle adslot_1" data-ad-client="ca-pub-3139212365885959" data-ad-slot="5702922209" data-ad-format="auto"></ins>
     </center>
   `;
-  <script>
-    (adsbygoogle =window.adsbygoogle || []).push({});
-  </script>
+  (adsbygoogle =window.adsbygoogle || []).push({});
 }
