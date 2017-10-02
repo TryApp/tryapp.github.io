@@ -41,9 +41,8 @@ if (qrStr) {
           document.getElementById('appVersion').textContent = appVersion;
           document.getElementById('appIdentifier').textContent = appIdentifier;
           document.getElementById('installButton').textContent = "Install Application";
-          document.getElementById('mainDiv').hidden = false;
-          document.getElementById('loaderDiv').hidden = true;
           document.getElementById('showAllBuildButton').hidden = true;
+          mainView.router.load({pageName: 'home'});
           document.title = appTitle + " | AppBox";
           //trackPageName();
           updateInstallationMessage(appTitle);
@@ -84,8 +83,7 @@ if (qrStr) {
             document.getElementById('installButton').textContent = "Install Application";
             document.getElementById('showAllBuildButton').hidden = true;
           }
-          document.getElementById('mainDiv').hidden = false;
-          document.getElementById('loaderDiv').hidden = true;
+          mainView.router.load({pageName: 'home'});
         }
         catch (err) {
           //showErrorUI();

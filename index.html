@@ -76,9 +76,12 @@
   <!-- Views-->
   <div class="views">
     <!-- Right view, it is main view-->
-    <div class="view view-main navbar-through">
+    <div class="view view-main navbar-through" data-page="home">
       <div class="navbar">
-        <div class="navbar-inner" data-page="home">
+        <div class="navbar-inner" data-page="loading">
+          <div id="appTitle" class="center sliding">Loading...</div>
+        </div>
+        <div class="navbar-inner cached" data-page="home">
           <div id="appTitle" class="center sliding">Loading...</div>
           <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
         </div>
@@ -91,7 +94,14 @@
       <!-- Pages-->
       <div class="pages">
         <!-- Page, data-page contains page name-->
-        <div data-page="home" class="page">
+        <div class="page" data-page="post-install">
+          <div class="page-content">
+            <center>
+              <img src="img/loading.gif" alt="loading..." height="50" width="50">
+            </center>
+          </div>
+        </div>
+        <div class="page cached" data-page="home">
           <!-- Scrollable page content-->
           <div class="page-content">
             <div class="content-block-title">APP OVERVIEW</div>
