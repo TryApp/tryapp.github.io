@@ -34,9 +34,3 @@
     width: 970px; height: 250px; 
   } 
 }
-
-#footer, .adslot_1 {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
