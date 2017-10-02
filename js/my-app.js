@@ -167,7 +167,7 @@ function updatePreviousBuild(versions){
     var installButtonId = 'appInstall' + i;
     var menifestLink = version.manifestLink.split("dropbox.com")[1];
 
-    let listItem = '<li class="item-content"> \
+    var listItem = '<li class="item-content"> \
                       <a id=\"'+installButtonId+'\" link=\"'+menifestLink+'\" >\
                         <div class="item-inner">\
                         <div class="item-title-row">\
@@ -177,9 +177,9 @@ function updatePreviousBuild(versions){
                       </div></a>\
                     </li>'
 
-    htmlContent.concat(listItem)
+    htmlContent += listItem;
   }
-  htmlContent.concat('</ul>');
+  htmlContent += '</ul>';
   allBuildDiv.innerHTML = htmlContent;
 
   for (i=0; i<versions.length; i++){
