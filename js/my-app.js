@@ -1,6 +1,6 @@
 // Initialize your app
 var myApp = new Framework7({
-    panelLeftBreakpoint: 1024
+  panelLeftBreakpoint: 1024
 });
 
 // Export selectors engine
@@ -8,12 +8,12 @@ var $$ = Dom7;
 
 // Add views
 var leftView = myApp.addView('.view-left', {
-    // Because we use fixed-through navbar we can enable dynamic navbar
-    dynamicNavbar: true
+  // Because we use fixed-through navbar we can enable dynamic navbar
+  dynamicNavbar: true
 });
 var mainView = myApp.addView('.view-main', {
-    // Because we use fixed-through navbar we can enable dynamic navbar
-    dynamicNavbar: true
+  // Because we use fixed-through navbar we can enable dynamic navbar
+  dynamicNavbar: true
 });
 
 var mainView = myApp.addView('.view-main', {
@@ -42,10 +42,11 @@ if (qrStr) {
           document.getElementById('appIdentifier').textContent = appIdentifier;
           document.getElementById('installButton').textContent = "Install Application";
           document.getElementById('showAllBuildButton').hidden = true;
-          mainView.router.load({pageName: 'home'});
+          mainView.router.load({ pageName: 'home' });
           document.title = appTitle + " | AppBox";
           //trackPageName();
           updateInstallationMessage(appTitle);
+          insertAdsOnDiv('home-ads');
         }
         catch (err) {
           //showErrorUI();
@@ -83,7 +84,8 @@ if (qrStr) {
             document.getElementById('installButton').textContent = "Install Application";
             document.getElementById('showAllBuildButton').hidden = true;
           }
-          mainView.router.load({pageName: 'home'});
+          mainView.router.load({ pageName: 'home' });
+          insertAdsOnDiv('home-ads');
         }
         catch (err) {
           //showErrorUI();
@@ -105,14 +107,29 @@ if (qrStr) {
 
 
 function installApp(menifest) {
-    if (menifest == null){
-        menifest = menifestLinkPath;
-    }
-    window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
-    mainView.router.load({pageName: 'post-install'});
+  if (menifest == null) {
+    menifest = menifestLinkPath;
+  }
+  window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
+  mainView.router.load({ pageName: 'post-install' });
+  insertAdsOnDiv('post-install-ads');
 }
 
-function updateInstallationMessage(title){
-  document.getElementById('installationTitle').textContent = "By now, you should have seen an iOS popup proposing to install \""+ title 
-  +"\" .  Please confirm the installation dialog, then press your Home button to see the installation progress. ";
+function updateInstallationMessage(title) {
+  document.getElementById('installationTitle').textContent = "By now, you should have seen an iOS popup proposing to install \"" + title
+    + "\" .  Please confirm the installation dialog, then press your Home button to see the installation progress. ";
+}
+
+function insertAdsOnDiv(divId){
+  document.getElementById(divId).innerHTML = `
+    <center>
+      <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle adslot_1" data-ad-client="ca-pub-3139212365885959" data-ad-slot="5702922209" data-ad-format="auto"></ins>
+      <script>
+        window.onload = function () {
+          (adsbygoogle =window.adsbygoogle || []).push({});
+        }
+      </script>
+    </center>
+  `;
 }
