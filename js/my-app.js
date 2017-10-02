@@ -16,6 +16,10 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+var mainView = myApp.addView('.view-main', {
+  domCache: true //enable inline pages
+});
+
 
 var qrStr = window.location.search;
 qrStr = qrStr.split("?url=")[1];
@@ -107,7 +111,7 @@ function installApp(menifest) {
         menifest = menifestLinkPath;
     }
     window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
-    myApp.mainView.router.load({pageName: 'post-install'});
+    mainView.router.load({pageName: 'post-install'});
 }
 
 function updateInstallationMessage(title){
