@@ -34,3 +34,9 @@
     width: 970px; height: 250px; 
   } 
 }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
