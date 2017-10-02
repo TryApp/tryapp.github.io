@@ -147,11 +147,11 @@ function showHome(){
   insertAdsOnDiv('home-ads');
 }
 
-/*
- <ul>
-                  
-                </ul>
-*/
+function showAllBuilds(){
+  mainView.router.load({ pageName: 'home' });
+  insertAdsOnDiv('allBuilds-ads');
+}
+
 
 //Update Previous Build
 function updatePreviousBuild(versions){
