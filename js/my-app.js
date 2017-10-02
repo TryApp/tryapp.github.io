@@ -148,7 +148,7 @@ function showHome(){
 }
 
 function showAllBuilds(){
-  mainView.router.load({ pageName: 'home' });
+  mainView.router.load({ pageName: 'allBuilds' });
   insertAdsOnDiv('allBuilds-ads');
 }
 
