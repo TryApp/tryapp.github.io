@@ -123,13 +123,10 @@ function updateInstallationMessage(title) {
 function insertAdsOnDiv(divId){
   document.getElementById(divId).innerHTML = `
     <center>
-      <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       <ins class="adsbygoogle adslot_1" data-ad-client="ca-pub-3139212365885959" data-ad-slot="5702922209" data-ad-format="auto"></ins>
-      <script>
-        window.onload = function () {
-          (adsbygoogle =window.adsbygoogle || []).push({});
-        }
-      </script>
     </center>
   `;
+  <script>
+    (adsbygoogle =window.adsbygoogle || []).push({});
+  </script>
 }
