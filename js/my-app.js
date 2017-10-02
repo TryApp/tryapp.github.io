@@ -42,7 +42,7 @@ if (qrStr) {
           document.getElementById('showAllBuildButton').hidden = true;
           document.title = appTitle + " | AppBox";
           //trackPageName();
-          //updateInstallationMessage(appTitle);
+          updateInstallationMessage(appTitle);
         }
         catch (err) {
           //showErrorUI();
@@ -72,7 +72,7 @@ if (qrStr) {
           document.getElementById('appIdentifier').textContent = appIdentifier;
           document.title = appTitle + " | AppBox";
           //trackPageName();
-          //updateInstallationMessage(appTitle);
+          updateInstallationMessage(appTitle);
           if (response.versions.length > 1) {
             document.getElementById('installButton').textContent = "Install Latest Version";
             updatePreviousBuild(response.versions);
@@ -108,4 +108,9 @@ function installApp(menifest) {
     }
     window.location.href = "itms-services://?action=download-manifest&url=https://dl.dropbox.com" + menifest;
     myApp.mainView.router.load({pageName: 'post-install'});
+}
+
+function updateInstallationMessage(title){
+  document.getElementById('installationTitle').textContent = "By now, you should have seen an iOS popup proposing to install \""+ title 
+  +"\" .  Please confirm the installation dialog, then press your Home button to see the installation progress. ";
 }

@@ -84,7 +84,7 @@
         </div>
         <div class="navbar-inner cached" data-page="post-install">
           <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-          <div class="center sliding">Installation</div>
+          <div class="center sliding">Installation...</div>
           <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
         </div>
       </div>
@@ -160,85 +160,14 @@
         </div>
         <div class="page cached" data-page="post-install">
           <div class="page-content">
-            <div class="content-block-title">…in progress</div>
+            <div class="content-block-title">Installation in progress...</div>
             <div class="list-block tablet-inset">
               <ul>
                 <li class="item-content">
-                  <div class="item-inner">
-                    By now, you should have seen an iOS popup proposing to install "iOSTest".<br><br> Installation will then
-                    be performed in the background (since iOS7): check the icons on your device's home screen.
+                  <div id="installationTitle" class="item-inner">
                   </div>
                 </li>
               </ul>
-            </div>
-
-            <div class="content-block-title">…or not?</div>
-            <div class="list-block tablet-inset">
-              <div class="list-group">
-                <ul>
-                  <li class="list-group-title">iOS install popup did not appear</li>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      If the iOS popup "Diawi would like to install…" did not appear, check that you don't already have the same app installed
-                      from the AppStore.<br><br> If an app with the same bundle identifier is already
-                      installed on the device from the AppStore, nothing will happen.<br><br> Delete the app installed from
-                      the AppStore to be able to install this one.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="list-group">
-                <ul>
-                  <li class="list-group-title">Nothing seems to happen</li>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      After tapping the "Install" button in the popup, if nothing seems to happen and you are on this page, check your device's
-                      home screen: the installation should be in progress: you should see the icon of the app somewhere and
-                      a progress indicator.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="list-group">
-                <ul>
-                  <li class="list-group-title">Unable to download app popup</li>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      If an "Unable to download app" popup appears after some time, first check your internet connection, and be sure that your
-                      device is not behind a firewall that may prevent downloading .ipa files.<br><br>                      Sadly, iOS won't give any detailed information on what went wrong. Check on the previous page if there
-                      are any warnings. Most common installation issues are:<br> - expired provisioning profile<br> - device
-                      UDID not in the provisioning profile<br> - incompatible device (check minimum iOS version, device family,
-                      required device capabilities and supported architectures)
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="list-group">
-                <ul>
-                  <li class="list-group-title">Untrusted Enterprise Developer</li>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      Starting from iOS 9, the developer has to be trusted by the device, otherwise a popup will appear and prevent using the app.<br><br>                      On iOS 9.0/9.1, go to Settings &gt; General &gt; Profiles &gt; tap on the developer's profile, and
-                      tap on Trust.<br><br> On iOS 9.2+, go to Settings &gt; General &gt; Device Management &gt; tap on the
-                      developer's profile, and tap on Trust.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="list-group">
-                <ul>
-                  <li class="list-group-title">Otherwise…</li>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      Contact your app developer, so they can double-check the app and provide you with support.
-                    </div>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
