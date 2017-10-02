@@ -90,6 +90,11 @@
           <div class="center">Installation...</div>
           <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
         </div>
+        <div class="navbar-inner cached" data-page="qr">
+          <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+          <div class="center">Scan to Install</div>
+          <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+        </div>
       </div>
       <!-- Pages-->
       <div class="pages">
@@ -148,7 +153,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="qr.html" class="item-link">
+                  <a onclick="showQR()" class="item-link">
                     <div class="item-content">
                       <div class="item-inner">
                         <div id="showQRCodeButton" class="item-title">Show QR Code</div>
@@ -159,7 +164,7 @@
               </ul>
             </div>
             <div id="home-ads">
-              
+
             </div>
           </div>
         </div>
@@ -175,7 +180,21 @@
               </ul>
             </div>
             <div id="post-install-ads">
-                
+
+            </div>
+          </div>
+        </div>
+        <div class="page cached" data-page="qr">
+          <div class="page-content">
+            <div class="list-block tablet-inset">
+              <ul>
+                <li class="item-content">
+                  <div id="qr-container"></div>
+                </li>
+              </ul>
+            </div>
+            <div id="qr-ads">
+
             </div>
           </div>
         </div>

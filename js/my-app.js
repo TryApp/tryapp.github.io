@@ -16,7 +16,14 @@ var mainView = myApp.addView('.view-main', {
   domCache: true
 });
 
+//QR Code
+var qrcode = new QRCode(document.getElementById("qr-container"), {
+  width : 250,
+  height : 250
+});
+qrcode.makeCode(window.location.href);
 
+//Installation Query
 var qrStr = window.location.search;
 qrStr = qrStr.split("?url=")[1];
 var menifestLinkPath = qrStr;
@@ -38,11 +45,10 @@ if (qrStr) {
           document.getElementById('appIdentifier').textContent = appIdentifier;
           document.getElementById('installButton').textContent = "Install Application";
           document.getElementById('showAllBuildButton').hidden = true;
-          mainView.router.load({ pageName: 'home' });
           document.title = appTitle + " | AppBox";
           //trackPageName();
           updateInstallationMessage(appTitle);
-          insertAdsOnDiv('home-ads');
+          showHome();
         }
         catch (err) {
           //showErrorUI();
@@ -80,8 +86,7 @@ if (qrStr) {
             document.getElementById('installButton').textContent = "Install Application";
             document.getElementById('showAllBuildButton').hidden = true;
           }
-          mainView.router.load({ pageName: 'home' });
-          insertAdsOnDiv('home-ads');
+          showHome();
         }
         catch (err) {
           //showErrorUI();
@@ -102,6 +107,7 @@ if (qrStr) {
 }
 
 
+//Install App
 function installApp(menifest) {
   if (menifest == null) {
     menifest = menifestLinkPath;
@@ -111,11 +117,14 @@ function installApp(menifest) {
   insertAdsOnDiv('post-install-ads');
 }
 
+//Update installation message
 function updateInstallationMessage(title) {
   document.getElementById('installationTitle').textContent = "By now, you should have seen an iOS popup proposing to install \"" + title
     + "\" .  Please confirm the installation dialog, then press your Home button to see the installation progress. ";
 }
 
+
+//Insert ads at page hide/unhide
 function insertAdsOnDiv(divId){
   document.getElementById(divId).innerHTML = `
     <center>
@@ -123,4 +132,17 @@ function insertAdsOnDiv(divId){
     </center>
   `;
   (adsbygoogle =window.adsbygoogle || []).push({});
+}
+
+
+//Show QR
+function showQR(){
+  mainView.router.load({ pageName: 'qr' });
+  insertAdsOnDiv('qr-ads');
+}
+
+//Show Home
+function showHome(){
+  mainView.router.load({ pageName: 'home' });
+  insertAdsOnDiv('home-ads');
 }
