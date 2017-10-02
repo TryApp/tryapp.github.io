@@ -178,13 +178,12 @@ function updatePreviousBuild(versions){
                     </li>'
 
     htmlContent.concat(listItem)
-    
+    htmlContent.concat('</ul>');
+    allBuildDiv.innerHTML = htmlContent; 
     var installButton = document.getElementById(installButtonId);
     installButton.addEventListener('onclick', function(){
       installApp(this.getAttribute("link"));
     });
 
   }
-  htmlContent.concat('</ul>');
-  allBuildDiv.innerHTML = htmlContent;
 }
