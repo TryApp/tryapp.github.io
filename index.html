@@ -67,12 +67,6 @@
       </div>
     </div>
   </div>
-  <!-- Right panel with cover effect-->
-  <div class="panel panel-right panel-reveal">
-    <div class="content-block">
-      <p>Right panel content goes here</p>
-    </div>
-  </div>
   <!-- Views-->
   <div class="views">
     <!-- Right view, it is main view-->
@@ -95,10 +89,16 @@
           <div class="center">Scan to Install</div>
           <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
         </div>
+        <div class="navbar-inner cached" data-page="allBuilds">
+            <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+            <div class="center">All Builds</div>
+            <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+          </div>
       </div>
       <!-- Pages-->
       <div class="pages">
         <!-- Page, data-page contains page name-->
+        <!-- Loading Page -->
         <div class="page" data-page="loading">
           <div class="page-content">
             <br><br>
@@ -107,6 +107,7 @@
             </center>
           </div>
         </div>
+        <!-- Home Page -->
         <div class="page cached" data-page="home">
           <!-- Scrollable page content-->
           <div class="page-content">
@@ -166,6 +167,7 @@
             <div id="home-ads"></div>
           </div>
         </div>
+        <!-- Installation Page -->
         <div class="page cached" data-page="post-install">
           <div class="page-content">
             <div class="content-block-title">Installation in progress...</div>
@@ -180,6 +182,7 @@
             <div id="post-install-ads"></div>
           </div>
         </div>
+        <!-- QR Page -->
         <div class="page cached" data-page="qr">
           <div class="page-content">
             <br><br>
@@ -190,7 +193,15 @@
             <div id="qr-ads"></div>
           </div>
         </div>
-
+        <!-- All Builds Page -->
+        <div class="page cached" data-page="allBuilds" >
+            <div class="page-content">
+              <div id="allBuildProjectName" class="content-block-title"></div>
+              <div id="allBuildDiv" class="list-block media-list">
+               
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>

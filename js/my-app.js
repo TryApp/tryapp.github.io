@@ -146,3 +146,45 @@ function showHome(){
   mainView.router.load({ pageName: 'home' });
   insertAdsOnDiv('home-ads');
 }
+
+/*
+ <ul>
+                  
+                </ul>
+*/
+
+//Update Previous Build
+function updatePreviousBuild(versions){
+  versions.reverse();
+  var allBuildDiv = document.getElementById("allBuildDiv");
+  var htmlContent = '<ul>';
+  for (i=0; i<versions.length; i++){
+    var version = versions[i];
+
+    var date = new Date(version.timestamp*1000);
+    var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+    document.getElementById('allBuildProjectName').textContent = version.name;
+    var installButtonId = 'appInstall' + i;
+    var menifestLink = version.manifestLink.split("dropbox.com")[1];
+
+    let listItem = '<li class="item-content"> \
+                      <a id=\"'+installButtonId+'\" link=\"'+menifestLink+'\" >\
+                        <div class="item-inner">\
+                        <div class="item-title-row">\
+                        <div class="item-title">'+datestring+'</div>\
+                        </div>\
+                        <div class="item-subtitle">version ' + version.version + '(' + version.build  +')</div>\
+                      </div></a>\
+                    </li>'
+
+    htmlContent.concat(listItem)
+    
+    var installButton = document.getElementById(installButtonId);
+    installButton.addEventListener('onclick', function(){
+      installApp(this.getAttribute("link"));
+    });
+
+  }
+  htmlContent.concat('</ul>');
+  allBuildDiv.innerHTML = htmlContent;
+}
