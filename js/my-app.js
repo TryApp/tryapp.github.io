@@ -175,7 +175,7 @@ function updatePreviousBuild(versions){
                           <div class="item-subtitle">'+datestring+'</div>\
                         </div>\
                         <div class="item-inner"> \
-                          <button id=\"'+installButtonId+'\" link=\"'+menifestLink+'\" class="button button-big" style="width: 100%;>Install</button>\
+                          <button id=\"'+installButtonId+'\" link=\"'+menifestLink+'\" class="button button-big" style="width: 100%;">Install</button>\
                         </div>\
                     </li>'
 
