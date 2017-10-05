@@ -75,6 +75,7 @@ if (qrStr) {
           var appVersion = response.latestVersion.version;
           document.getElementById('appTitle').textContent = appTitle;
           document.getElementById('appVersion').textContent = appVersion;
+          document.getElementById('appTitleAllBuilds').textContent = appTitle;
           document.getElementById('appIdentifier').textContent = appIdentifier;
           document.title = appTitle + " | AppBox";
           //trackPageName();
@@ -163,18 +164,19 @@ function updatePreviousBuild(versions){
 
     var date = new Date(version.timestamp*1000);
     var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
-    document.getElementById('allBuildProjectName').textContent = version.name;
     var installButtonId = 'appInstall' + i;
     var menifestLink = version.manifestLink.split("dropbox.com")[1];
 
     var listItem = '<li class="item-content"> \
-                      <a id=\"'+installButtonId+'\" link=\"'+menifestLink+'\" >\
                         <div class="item-inner">\
-                        <div class="item-title-row">\
-                        <div class="item-title">'+datestring+'</div>\
+                          <div class="item-title-row">\
+                            <div class="item-title">version ' + version.version + '(' + version.build  +')</div>\
+                          </div>\
+                          <div class="item-subtitle">'+datestring+'</div>\
                         </div>\
-                        <div class="item-subtitle">version ' + version.version + '(' + version.build  +')</div>\
-                      </div></a>\
+                        <div class="item-inner"> \
+                          <button id=\"'+installButtonId+'\" link=\"'+menifestLink+'\" class="button button-big" style="width: 100%;>Install</button>\
+                        </div>\
                     </li>'
 
     htmlContent += listItem;
@@ -185,7 +187,7 @@ function updatePreviousBuild(versions){
   for (i=0; i<versions.length; i++){
     var installButtonId = 'appInstall' + i;
     var installButton = document.getElementById(installButtonId);
-    installButton.addEventListener('onclick', function(){
+    installButton.addEventListener('click', function(){
       installApp(this.getAttribute("link"));
     });
   }
