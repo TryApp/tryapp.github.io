@@ -170,7 +170,7 @@ function updatePreviousBuild(versions){
     var listItem = '<li class="item-content"> \
                         <div class="item-inner">\
                           <div class="item-title-row">\
-                            <div class="item-title">version ' + version.version + '(' + version.build  +')</div>\
+                            <div class="item-title">Ver ' + version.version + '(' + version.build  +')</div>\
                           </div>\
                           <div class="item-subtitle">'+datestring+'</div>\
                         </div>\

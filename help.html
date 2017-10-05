@@ -1,4 +1,3 @@
-
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
@@ -9,11 +8,73 @@
 <div class="pages">
   <div data-page="about" class="page">
     <div class="page-content">
-      <div class="content-block">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel commodo massa, eu adipiscing mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus ultricies dictum neque, non varius tortor fermentum at. Curabitur auctor cursus imperdiet. Nam molestie nisi nec est lacinia volutpat in a purus. Maecenas consectetur condimentum viverra. Donec ultricies nec sem vel condimentum. Phasellus eu tincidunt enim, sit amet convallis orci. Vestibulum quis fringilla dolor.    </p>
-        <p>Mauris commodo lacus at nisl lacinia, nec facilisis erat rhoncus. Sed eget pharetra nunc. Aenean vitae vehicula massa, sed sagittis ante. Quisque luctus nec velit dictum convallis. Nulla facilisi. Ut sed erat nisi. Donec non dolor massa. Mauris malesuada dolor velit, in suscipit leo consectetur vitae. Duis tempus ligula non eros pretium condimentum. Cras sed dolor odio.</p>
-        <p>Suspendisse commodo adipiscing urna, a aliquet sem egestas in. Sed tincidunt dui a magna facilisis bibendum. Nunc euismod consectetur lorem vitae molestie. Proin mattis tellus libero, non hendrerit neque eleifend ac. Pellentesque interdum velit at lacus consectetur scelerisque et id dui. Praesent non fringilla dui, a elementum purus. Proin vitae lacus libero. Nunc eget lectus non mi iaculis interdum vel a velit. Nullam tincidunt purus id lacus ornare, at elementum turpis euismod. Cras mauris enim, congue eu nisl sit amet, pulvinar semper erat. Suspendisse sed mauris diam.</p>
-        <p>Nam eu mauris leo. Pellentesque aliquam vehicula est, sed lobortis tellus malesuada facilisis. Fusce at hendrerit ligula. Donec eu nibh convallis, pulvinar enim quis, lacinia diam. Ut semper ac magna nec ornare. Integer placerat justo sed nunc suscipit facilisis. Vestibulum ac tincidunt augue. Duis eu aliquet mauris, vel luctus mauris. Nulla non augue nec diam pharetra posuere at in mauris.</p>
+      <div class="list-block tablet-inset">
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">iOS install popup did not appear</li>
+            <li class="item-content">
+              <div class="item-inner">
+                If the iOS popup "dl.dropboxusercontent.com would like to install…" did not appear, check that you don't already have the same app installed
+                from the AppStore.<br><br> If an app with the same bundle identifier is already installed
+                on the device from the AppStore, nothing will happen.<br><br> Delete the app installed from the AppStore
+                to be able to install this one.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">Nothing seems to happen</li>
+            <li class="item-content">
+              <div class="item-inner">
+                After tapping the "Install" button in the popup, if nothing seems to happen and you are on this page, check your device's
+                home screen: the installation should be in progress: you should see the icon of the app somewhere and a progress
+                indicator.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">Unable to download app popup</li>
+            <li class="item-content">
+              <div class="item-inner">
+                If an "Unable to download app" popup appears after some time, first check your internet connection, and be sure that your
+                device is not behind a firewall that may prevent downloading .ipa files.<br><br> Sadly, iOS
+                won't give any detailed information on what went wrong. Check on the previous page if there are any warnings.
+                Most common installation issues are:<br> - expired provisioning profile<br> - device UDID not in the provisioning
+                profile<br> - incompatible device (check minimum iOS version, device family, required device capabilities
+                and supported architectures)
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">Untrusted Enterprise Developer</li>
+            <li class="item-content">
+              <div class="item-inner">
+                Starting from iOS 9, the developer has to be trusted by the device, otherwise a popup will appear and prevent using the app.<br><br>                On iOS 9.0/9.1, go to Settings &gt; General &gt; Profiles &gt; tap on the developer's profile, and tap on
+                Trust.<br><br> On iOS 9.2+, go to Settings &gt; General &gt; Device Management &gt; tap on the developer's
+                profile, and tap on Trust.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">Otherwise…</li>
+            <li class="item-content">
+              <div class="item-inner">
+                Contact your app developer, so they can double-check the app and provide you with support.
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
