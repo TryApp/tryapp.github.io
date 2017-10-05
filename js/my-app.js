@@ -46,15 +46,15 @@ if (qrStr) {
           document.getElementById('installButton').textContent = "Install Application";
           document.getElementById('showAllBuildButton').hidden = true;
           document.title = appTitle + " | AppBox";
-          //trackPageName();
+          trackPageName();
           updateInstallationMessage(appTitle);
           showHome();
         }
         catch (err) {
-          //showErrorUI();
+          showErrorUI();
         }
       } else if (client.status >= 400) {
-        //showErrorUI();
+        showErrorUI();
       }
     };
     client.open('GET', 'https://dl.dropboxusercontent.com' + qrStr);
@@ -78,7 +78,7 @@ if (qrStr) {
           document.getElementById('appTitleAllBuilds').textContent = appTitle;
           document.getElementById('appIdentifier').textContent = appIdentifier;
           document.title = appTitle + " | AppBox";
-          //trackPageName();
+          trackPageName();
           updateInstallationMessage(appTitle);
           if (response.versions.length > 1) {
             document.getElementById('installButton').textContent = "Install Latest Version";
@@ -90,10 +90,10 @@ if (qrStr) {
           showHome();
         }
         catch (err) {
-          //showErrorUI();
+          showErrorUI();
         }
       } else if (client.status >= 400) {
-        //showErrorUI();
+        showErrorUI();
       }
     };
     client.open('GET', 'https://dl.dropboxusercontent.com' + qrStr);
@@ -101,10 +101,10 @@ if (qrStr) {
     client.overrideMimeType('text/xml')
     client.send();
   } else {
-    //showErrorUI();
+    showErrorUI();
   }
 } else {
-  //appPage();
+  showErrorUI();
 }
 
 
@@ -153,6 +153,11 @@ function showAllBuilds(){
   insertAdsOnDiv('allBuilds-ads');
 }
 
+function showErrorUI(){
+  mainView.router.load({ pageName: 'error' });
+  insertAdsOnDiv('error-ads');
+}
+
 
 //Update Previous Build
 function updatePreviousBuild(versions){
@@ -191,4 +196,13 @@ function updatePreviousBuild(versions){
       installApp(this.getAttribute("link"));
     });
   }
+}
+
+function trackPageName(){
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-85215717-1', 'auto');
+    ga('send', 'pageview');
 }
