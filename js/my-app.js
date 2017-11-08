@@ -73,10 +73,11 @@ if (qrStr) {
           var appTitle = response.latestVersion.name;
           var appIdentifier = response.latestVersion.identifier;
           var appVersion = response.latestVersion.version;
+          var appBuild = response.latestVersion.build;
           document.getElementById('appTitle').textContent = appTitle;
-          document.getElementById('appVersion').textContent = appVersion;
           document.getElementById('appTitleAllBuilds').textContent = appTitle;
           document.getElementById('appIdentifier').textContent = appIdentifier;
+          document.getElementById('appVersion').textContent = appVersion + '(' + appBuild  +')';
           document.title = appTitle + " | AppBox";
           trackPageName();
           updateInstallationMessage(appTitle);
