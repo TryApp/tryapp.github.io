@@ -77,7 +77,7 @@ if (qrStr) {
           document.getElementById('appTitle').textContent = appTitle;
           document.getElementById('appTitleAllBuilds').textContent = appTitle;
           document.getElementById('appIdentifier').textContent = appIdentifier;
-          document.getElementById('appVersion').textContent = appVersion + '(' + appBuild  +')';
+          document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';
           document.title = appTitle + " | AppBox";
           trackPageName();
           updateInstallationMessage(appTitle);
