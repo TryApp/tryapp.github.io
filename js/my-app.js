@@ -24,7 +24,7 @@ var qrcode = new QRCode(document.getElementById("qr-container"), {
 qrcode.makeCode(window.location.href);
 
 //Installation Query
-var qrStr = window.location.search;
+var qrStr = decodeURIComponent(window.location.search);
 qrStr = qrStr.split("?url=")[1];
 var menifestLinkPath = qrStr;
 if (qrStr) {
