@@ -91,7 +91,7 @@ if (qrStr) {
           if (response.latestVersion.mobileprovision) {
             //upload time
             var uploadDate = getDateFromTimeStamp(response.latestVersion.timestamp);
-            document.getElementById('uploadedDate').textContent = buildType;
+            document.getElementById('uploadedDate').textContent = uploadDate;
             
             //build type
             var buildType = response.latestVersion.buildtype;
