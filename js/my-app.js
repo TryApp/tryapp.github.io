@@ -236,7 +236,7 @@ function getDateFromTimeStamp(timestamp) {
   hours = hours ? hours : 12;
   hours = hours < 10 ? '0'+hours : hours;
   minutes = minutes < 10 ? '0'+minutes : minutes;
-  var strTime = date.toLocaleDateString() + ' ' + hours + ':' + minutes + ' ' + ampm;
+  var strTime = date.toLocaleDateString() + ', ' + hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
 
