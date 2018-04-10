@@ -89,6 +89,10 @@ if (qrStr) {
 
           //provisioning profile details
           if (response.latestVersion.mobileprovision) {
+            //upload time
+            var uploadDate = getDateFromTimeStamp(response.latestVersion.timestamp);
+            document.getElementById('uploadedDate').textContent = buildType;
+            
             //build type
             var buildType = response.latestVersion.buildtype;
             document.getElementById('profileType').textContent = buildType;
