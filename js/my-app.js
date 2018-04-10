@@ -36,7 +36,6 @@ if (qrStr) {
         try {
           menifestLinkPath = qrStr;
           var response = client.responseText.replace(new RegExp(/[^a-zA-Z0-9.]/g), '');
-          var first = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
           var appTitle = response.split('stringkeytitlekeystring')[1].toString().split('string')[0];
           var appIdentifier = response.split('keybundleidentifierkeystring')[1].toString().split('string')[0];
           var appVersion = response.split('stringkeybundleversionkeystring')[1].toString().split('string')[0];
@@ -45,6 +44,7 @@ if (qrStr) {
           document.getElementById('appIdentifier').textContent = appIdentifier;
           document.getElementById('installButton').textContent = "Install Application";
           document.getElementById('showAllBuildButton').hidden = true;
+          document.getElementById('showMoreDetailsOption').hidden = true;
           document.title = appTitle + " | AppBox";
           trackPageName();
           updateInstallationMessage(appTitle);
@@ -67,20 +67,61 @@ if (qrStr) {
     client.onreadystatechange = function () {
       if (client.readyState == 4 && client.status == 200) {
         try {
+          //response
           var response = JSON.parse(client.responseText);
           menifestLinkPath = response.latestVersion.manifestLink.split("dropbox.com")[1];
-          var first = response.latestVersion.build;
+
+          //app title
           var appTitle = response.latestVersion.name;
-          var appIdentifier = response.latestVersion.identifier;
-          var appVersion = response.latestVersion.version;
-          var appBuild = response.latestVersion.build;
           document.getElementById('appTitle').textContent = appTitle;
           document.getElementById('appTitleAllBuilds').textContent = appTitle;
+
+          //bundle identifier
+          var appIdentifier = response.latestVersion.identifier;
           document.getElementById('appIdentifier').textContent = appIdentifier;
+
+          //app version and build
+          var appVersion = response.latestVersion.version;
+          var appBuild = response.latestVersion.build;
           document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';
+
+          //build type
+          var buildType = response.latestVersion.buildtype;
+          document.getElementById('profileType').textContent = buildType;
+
+          //ipa file size
+          var ipaFileSize = response.latestVersion.ipafilesize;
+          document.getElementById('appSize').textContent = ipaFileSize + ' MB';
+
+          //minimum iOS version
+          var minOSVersion = response.latestVersion.minosversion;
+          document.getElementById('miniOSVersion').textContent = minOSVersion;
+
+          //supported device
+          var supporteddevice = response.latestVersion.supporteddevice;
+          document.getElementById('deviceFamily').textContent = supporteddevice;
+
+          //profile creation date
+          var provisonCreationDate = getDateFromTimeStamp(response.latestVersion.mobileprovision.createdate);
+          document.getElementById('profileCreation').textContent = provisonCreationDate;
+
+          //profile expiration date
+          var provisonExpirationDate = getDateFromTimeStamp(response.latestVersion.mobileprovision.expirationdata);
+          document.getElementById('profileExpiration').textContent = provisonExpirationDate;
+          
+          //profile team name
+          var teamName = response.latestVersion.mobileprovision.teamname;
+          document.getElementById('teamName').textContent = provisonExpirationDate;
+
+          //hide show more details if supporteddevice not available
+          document.getElementById('showMoreDetailsOption').hidden = supporteddevice ? false : true;
+
+          //update page title and installation message
           document.title = appTitle + " | AppBox";
           trackPageName();
           updateInstallationMessage(appTitle);
+
+          //check for other version of this build
           if (response.versions.length > 1) {
             document.getElementById('installButton').textContent = "Install Latest Version";
             updatePreviousBuild(response.versions);
@@ -88,6 +129,15 @@ if (qrStr) {
             document.getElementById('installButton').textContent = "Install Application";
             document.getElementById('showAllBuildButton').hidden = true;
           }
+
+          //provision device udid
+          if (response.latestVersion.mobileprovision.devicesudid.length > 1) {
+            updateProvisionDeviceView(response.latestVersion.mobileprovision.devicesudid);
+          } else {
+            document.getElementById('showProvisionedDevicesList').hidden = true;
+          }
+
+          //show home page
           showHome();
         }
         catch (err) {
@@ -159,6 +209,21 @@ function showErrorUI(){
   insertAdsOnDiv('error-ads');
 }
 
+function showMoreDetails() {
+  mainView.router.load({pageName: 'moreDetails'});
+}
+
+function showProvisionedDevices() {
+  mainView.router.load({pageName: 'allProvisionedDevices'});
+}
+
+//Get date
+
+function getDateFromTimeStamp(timestamp) {
+  var date = new Date(timestamp * 1000);
+  var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+  return datestring;
+}
 
 //Update Previous Build
 function updatePreviousBuild(versions){
@@ -168,8 +233,7 @@ function updatePreviousBuild(versions){
   for (i=0; i<versions.length; i++){
     var version = versions[i];
 
-    var date = new Date(version.timestamp*1000);
-    var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+    var datestring = getDateFromTimeStamp(version.timestamp);
     var installButtonId = 'appInstall' + i;
     var menifestLink = version.manifestLink.split("dropbox.com")[1];
 
@@ -197,6 +261,24 @@ function updatePreviousBuild(versions){
       installApp(this.getAttribute("link"));
     });
   }
+}
+
+function updateProvisionDeviceView(devicesUDID) {
+  var provisionDeviceDiv = document.getElementById("allProvisionedDevicesDiv");
+  var htmlContent = '<ul>';
+  for (i=0; i<devicesUDID.length; i++){
+    var listItem = '<li class="item-content"> \
+                        <div class="item-inner">\
+                          <div class="item-title-row">\
+                            <div class="item-title">' + devicesUDID[i] + '</div>\
+                          </div>\
+                        </div>\
+                    </li>'
+
+    htmlContent += listItem;
+  }
+  htmlContent += '</ul>';
+  provisionDeviceDiv.innerHTML = htmlContent;
 }
 
 function trackPageName(){

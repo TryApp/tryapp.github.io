@@ -134,6 +134,15 @@
                     </div>
                   </div>
                 </li>
+                <li id="showMoreDetailsOption">
+                  <a onclick="showMoreDetails()" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <divclass="item-title">More Details</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
               </ul>
             </div>
             <div class="content-block-title">INSTALLATION</div>
@@ -169,6 +178,97 @@
               </ul>
             </div>
             <div id="home-ads"></div>
+          </div>
+        </div>
+         <!-- More Details Page -->
+         <div class="page cached" data-page="moreDetails">
+          <!-- Scrollable page content-->
+          <div class="page-content">
+            <div class="content-block-title">APP DETAILS</div>
+            <div class="list-block">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Size</div>
+                      <div id="appSize" class="item-after">1.0</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Minimum iOS version</div>
+                      <div id="miniOSVersion" class="item-after">1.0</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Device family</div>
+                      <div id="deviceFamily" class="item-after">1.0</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="content-block-title">PROVISIONING PROFILE</div>
+            <div class="list-block">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Profile type</div>
+                      <div id="profileType" class="item-after">1.0</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Profile creation</div>
+                      <div id="profileCreation" class="item-after">1.0</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Profile expiration</div>
+                      <div id="profileExpiration" class="item-after">1.0</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Profile expiration</div>
+                      <div id="teamName" class="item-after">1.0</div>
+                    </div>
+                  </div>
+                </li>
+                <li id="showProvisionedDevicesList">
+                  <a onclick="showProvisionedDevices()" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Provisioned devices</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div id="moreDetails-ads"></div>
+          </div>
+        </div>
+         <!-- Provisioned Device Page -->
+         <div class="page cached" data-page="allProvisionedDevices">
+          <div class="page-content">
+            <div class="content-block-title">Provisioned devices</div>
+            <div id="allProvisionedDevicesDiv" class="list-block media-list">
+            </div>
+            <div id="allProvisionedDevices-ads"></div>
           </div>
         </div>
         <!-- Installation Page -->
