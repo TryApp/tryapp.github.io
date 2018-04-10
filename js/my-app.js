@@ -133,8 +133,9 @@ if (qrStr) {
           }
 
           //provision device udid
-          if (response.latestVersion.mobileprovision.devicesudid.length > 1) {
-            updateProvisionDeviceView(response.latestVersion.mobileprovision.devicesudid);
+          var devicesUDID = response.latestVersion.mobileprovision.devicesudid
+          if (devicesUDID && devicesUDID.length > 1) {
+            updateProvisionDeviceView(devicesUDID);
           } else {
             document.getElementById('showProvisionedDevicesList').hidden = true;
           }
@@ -213,18 +214,26 @@ function showErrorUI(){
 
 function showMoreDetails() {
   mainView.router.load({pageName: 'moreDetails'});
+  insertAdsOnDiv('moreDetails-ads');
 }
 
 function showProvisionedDevices() {
   mainView.router.load({pageName: 'allProvisionedDevices'});
+  insertAdsOnDiv('allProvisionedDevices-ads');
 }
 
 //Get date
 
 function getDateFromTimeStamp(timestamp) {
   var date = new Date(timestamp * 1000);
-  var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
-  return datestring;
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
 }
 
 //Update Previous Build
