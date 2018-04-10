@@ -105,9 +105,6 @@ if (qrStr) {
             var supporteddevice = response.latestVersion.supporteddevice;
             document.getElementById('deviceFamily').textContent = supporteddevice;
 
-            //hide show more details if supporteddevice not available
-            document.getElementById('showMoreDetailsOption').hidden = supporteddevice ? false : true;
-
             //profile creation date
             var provisonCreationDate = getDateFromTimeStamp(response.latestVersion.mobileprovision.createdate);
             document.getElementById('profileCreation').textContent = provisonCreationDate;
@@ -127,6 +124,9 @@ if (qrStr) {
             } else {
               document.getElementById('showProvisionedDevicesList').hidden = true;
             }
+          } else {
+            //hide hide more details for old builds
+            document.getElementById('showMoreDetailsOption').hidden = true;
           }
 
           //update page title and installation message
@@ -280,7 +280,7 @@ function updatePreviousBuild(versions){
 
 function updateProvisionDeviceView(devicesUDID) {
   var provisionDeviceDiv = document.getElementById("allProvisionedDevicesDiv");
-  document.getElementById("provisionedDeviceCount").textContent = 'PROVISIONING PROFILE ('+ devicesUDID.length +')';
+  document.getElementById("provisionedDeviceCount").textContent = 'Provisioned Devices ('+ devicesUDID.length +')';
 
   var htmlContent = '<ul>';
   for (i=0; i<devicesUDID.length; i++){
