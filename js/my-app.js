@@ -75,6 +75,8 @@ if (qrStr) {
           var appTitle = response.latestVersion.name;
           document.getElementById('appTitle').textContent = appTitle;
           document.getElementById('appTitleAllBuilds').textContent = appTitle;
+          document.getElementById('appTitleMoreDetails').textContent = appTitle;
+          document.getElementById('appTitleProvisionDevice').textContent = appTitle;
 
           //bundle identifier
           var appIdentifier = response.latestVersion.identifier;
@@ -111,7 +113,7 @@ if (qrStr) {
           
           //profile team name
           var teamName = response.latestVersion.mobileprovision.teamname;
-          document.getElementById('teamName').textContent = provisonExpirationDate;
+          document.getElementById('teamName').textContent = teamName;
 
           //hide show more details if supporteddevice not available
           document.getElementById('showMoreDetailsOption').hidden = supporteddevice ? false : true;
@@ -265,12 +267,14 @@ function updatePreviousBuild(versions){
 
 function updateProvisionDeviceView(devicesUDID) {
   var provisionDeviceDiv = document.getElementById("allProvisionedDevicesDiv");
+  document.getElementById("allProvisionedDevicesDiv").textContent = 'PROVISIONING PROFILE ('+ devicesUDID.length +')';
+
   var htmlContent = '<ul>';
   for (i=0; i<devicesUDID.length; i++){
     var listItem = '<li class="item-content"> \
                         <div class="item-inner">\
                           <div class="item-title-row">\
-                            <div class="item-title">' + devicesUDID[i] + '</div>\
+                            <div class="item-after">' + devicesUDID[i] + '</div>\
                           </div>\
                         </div>\
                     </li>'
