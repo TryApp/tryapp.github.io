@@ -85,38 +85,49 @@ if (qrStr) {
           //app version and build
           var appVersion = response.latestVersion.version;
           var appBuild = response.latestVersion.build;
-          document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';
+          document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';          
 
-          //build type
-          var buildType = response.latestVersion.buildtype;
-          document.getElementById('profileType').textContent = buildType;
+          //provisioning profile details
+          if (response.latestVersion.mobileprovision) {
+            //build type
+            var buildType = response.latestVersion.buildtype;
+            document.getElementById('profileType').textContent = buildType;
 
-          //ipa file size
-          var ipaFileSize = response.latestVersion.ipafilesize;
-          document.getElementById('appSize').textContent = ipaFileSize + ' MB';
+            //ipa file size
+            var ipaFileSize = response.latestVersion.ipafilesize;
+            document.getElementById('appSize').textContent = ipaFileSize + ' MB';
 
-          //minimum iOS version
-          var minOSVersion = response.latestVersion.minosversion;
-          document.getElementById('miniOSVersion').textContent = minOSVersion;
+            //minimum iOS version
+            var minOSVersion = response.latestVersion.minosversion;
+            document.getElementById('miniOSVersion').textContent = minOSVersion;
 
-          //supported device
-          var supporteddevice = response.latestVersion.supporteddevice;
-          document.getElementById('deviceFamily').textContent = supporteddevice;
+            //supported device
+            var supporteddevice = response.latestVersion.supporteddevice;
+            document.getElementById('deviceFamily').textContent = supporteddevice;
 
-          //profile creation date
-          var provisonCreationDate = getDateFromTimeStamp(response.latestVersion.mobileprovision.createdate);
-          document.getElementById('profileCreation').textContent = provisonCreationDate;
+            //hide show more details if supporteddevice not available
+            document.getElementById('showMoreDetailsOption').hidden = supporteddevice ? false : true;
 
-          //profile expiration date
-          var provisonExpirationDate = getDateFromTimeStamp(response.latestVersion.mobileprovision.expirationdata);
-          document.getElementById('profileExpiration').textContent = provisonExpirationDate;
+            //profile creation date
+            var provisonCreationDate = getDateFromTimeStamp(response.latestVersion.mobileprovision.createdate);
+            document.getElementById('profileCreation').textContent = provisonCreationDate;
+
+            //profile expiration date
+            var provisonExpirationDate = getDateFromTimeStamp(response.latestVersion.mobileprovision.expirationdata);
+            document.getElementById('profileExpiration').textContent = provisonExpirationDate;
           
-          //profile team name
-          var teamName = response.latestVersion.mobileprovision.teamname;
-          document.getElementById('teamName').textContent = teamName;
+            //profile team name
+            var teamName = response.latestVersion.mobileprovision.teamname;
+            document.getElementById('teamName').textContent = teamName;
 
-          //hide show more details if supporteddevice not available
-          document.getElementById('showMoreDetailsOption').hidden = supporteddevice ? false : true;
+            //provision device udid
+            var devicesUDID = response.latestVersion.mobileprovision.devicesudid
+            if (devicesUDID && devicesUDID.length > 1) {
+              updateProvisionDeviceView(devicesUDID);
+            } else {
+              document.getElementById('showProvisionedDevicesList').hidden = true;
+            }
+          }
 
           //update page title and installation message
           document.title = appTitle + " | AppBox";
@@ -130,14 +141,6 @@ if (qrStr) {
           } else {
             document.getElementById('installButton').textContent = "Install Application";
             document.getElementById('showAllBuildButton').hidden = true;
-          }
-
-          //provision device udid
-          var devicesUDID = response.latestVersion.mobileprovision.devicesudid
-          if (devicesUDID && devicesUDID.length > 1) {
-            updateProvisionDeviceView(devicesUDID);
-          } else {
-            document.getElementById('showProvisionedDevicesList').hidden = true;
           }
 
           //show home page
