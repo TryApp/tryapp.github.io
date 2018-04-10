@@ -231,6 +231,7 @@ function getDateFromTimeStamp(timestamp) {
   var ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12;
+  hours = hours < 10 ? '0'+hours : hours;
   minutes = minutes < 10 ? '0'+minutes : minutes;
   var strTime = date.toLocaleDateString() + ' ' + hours + ':' + minutes + ' ' + ampm;
   return strTime;
@@ -276,7 +277,7 @@ function updatePreviousBuild(versions){
 
 function updateProvisionDeviceView(devicesUDID) {
   var provisionDeviceDiv = document.getElementById("allProvisionedDevicesDiv");
-  document.getElementById("allProvisionedDevicesDiv").textContent = 'PROVISIONING PROFILE ('+ devicesUDID.length +')';
+  document.getElementById("provisionedDeviceCount").textContent = 'PROVISIONING PROFILE ('+ devicesUDID.length +')';
 
   var htmlContent = '<ul>';
   for (i=0; i<devicesUDID.length; i++){
