@@ -27,7 +27,6 @@ qrcode.makeCode(window.location.href);
 var qrStr = decodeURIComponent(window.location.search);
 qrStr = qrStr.split("?url=")[1];
 var menifestLinkPath = qrStr;
-var ipaDownloadLink;
 if (qrStr) {
   if (qrStr.indexOf('manifest.plist') != -1) {
     var client = new XMLHttpRequest();
@@ -89,8 +88,12 @@ if (qrStr) {
           document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';
           
           //IPA File Link
-          ipaDownloadLink = response.latestVersion.ipaFileLink;
+          var ipaDownloadLink = response.latestVersion.ipaFileLink;
           document.getElementById('downloadIPAFileButton').hidden = (ipaDownloadLink == null);
+          if (ipaDownloadLink) {
+            ipaDownloadLink = ipaDownloadLink.split("dropbox.com")[1];
+            document.getElementById('downloadIPAFileLink').href = 'https://dl.dropbox.com' + ipaDownloadLink;
+          }
 
           //provisioning profile details
           if (response.latestVersion.mobileprovision) {
@@ -212,13 +215,6 @@ function showErrorUI(){
 function showMoreDetails() {
   mainView.router.load({pageName: 'moreDetails'});
   insertAdsOnDiv('moreDetails-ads');
-}
-
-//Downlaod IPA File
-function downloadIPAFile() {
-  if (ipaDownloadLink) {
-    window.location.href = ipaDownloadLink;
-  }
 }
 
 //Show Provisioned Devices
