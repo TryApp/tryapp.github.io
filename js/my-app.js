@@ -27,6 +27,7 @@ qrcode.makeCode(window.location.href);
 var qrStr = decodeURIComponent(window.location.search);
 qrStr = qrStr.split("?url=")[1];
 var menifestLinkPath = qrStr;
+var ipaDownloadLink;
 if (qrStr) {
   if (qrStr.indexOf('manifest.plist') != -1) {
     var client = new XMLHttpRequest();
@@ -85,7 +86,11 @@ if (qrStr) {
           //app version and build
           var appVersion = response.latestVersion.version;
           var appBuild = response.latestVersion.build;
-          document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';          
+          document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';
+          
+          //IPA File Link
+          ipaDownloadLink = response.latestVersion.ipaDownloadLink;
+          document.getElementById('downloadIPAFileButton').hidden = (ipaDownloadLink == null);
 
           //provisioning profile details
           if (response.latestVersion.mobileprovision) {
@@ -179,6 +184,49 @@ function installApp(menifest) {
   insertAdsOnDiv('post-install-ads');
 }
 
+//Show QR
+function showQR(){
+  mainView.router.load({ pageName: 'qr' });
+  insertAdsOnDiv('qr-ads');
+}
+
+//Show Home
+function showHome(){
+  mainView.router.load({ pageName: 'home' });
+  insertAdsOnDiv('home-ads');
+}
+
+//Show All Builds
+function showAllBuilds(){
+  mainView.router.load({ pageName: 'allBuilds' });
+  insertAdsOnDiv('allBuilds-ads');
+}
+
+//Show Error UI
+function showErrorUI(){
+  mainView.router.load({ pageName: 'error' });
+  insertAdsOnDiv('error-ads');
+}
+
+//Show More Details
+function showMoreDetails() {
+  mainView.router.load({pageName: 'moreDetails'});
+  insertAdsOnDiv('moreDetails-ads');
+}
+
+//Show Provisioned Devices
+function showProvisionedDevices() {
+  mainView.router.load({pageName: 'allProvisionedDevices'});
+  insertAdsOnDiv('allProvisionedDevices-ads');
+}
+
+//Downlaod IPA File
+function downloadIPAFile() {
+  if (ipaDownloadLink) {
+    window.location.href = ipaDownloadLink;
+  }
+}
+
 //Update installation message
 function updateInstallationMessage(title) {
   document.getElementById('installationTitle').textContent = "By now, you should have seen an iOS popup proposing to install \"" + title
@@ -196,41 +244,7 @@ function insertAdsOnDiv(divId){
   (adsbygoogle =window.adsbygoogle || []).push({});
 }
 
-
-//Show QR
-function showQR(){
-  mainView.router.load({ pageName: 'qr' });
-  insertAdsOnDiv('qr-ads');
-}
-
-//Show Home
-function showHome(){
-  mainView.router.load({ pageName: 'home' });
-  insertAdsOnDiv('home-ads');
-}
-
-function showAllBuilds(){
-  mainView.router.load({ pageName: 'allBuilds' });
-  insertAdsOnDiv('allBuilds-ads');
-}
-
-function showErrorUI(){
-  mainView.router.load({ pageName: 'error' });
-  insertAdsOnDiv('error-ads');
-}
-
-function showMoreDetails() {
-  mainView.router.load({pageName: 'moreDetails'});
-  insertAdsOnDiv('moreDetails-ads');
-}
-
-function showProvisionedDevices() {
-  mainView.router.load({pageName: 'allProvisionedDevices'});
-  insertAdsOnDiv('allProvisionedDevices-ads');
-}
-
 //Get date
-
 function getDateFromTimeStamp(timestamp) {
   var date = new Date(timestamp * 1000);
   var hours = date.getHours();
@@ -282,6 +296,8 @@ function updatePreviousBuild(versions){
   }
 }
 
+
+//Update Provisioned Device View
 function updateProvisionDeviceView(devicesUDID) {
   var provisionDeviceDiv = document.getElementById("allProvisionedDevicesDiv");
   document.getElementById("provisionedDeviceCount").textContent = 'Provisioned Devices ('+ devicesUDID.length +')';
@@ -302,6 +318,7 @@ function updateProvisionDeviceView(devicesUDID) {
   provisionDeviceDiv.innerHTML = htmlContent;
 }
 
+//Track Page Name
 function trackPageName(){
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
