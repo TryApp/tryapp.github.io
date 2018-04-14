@@ -90,7 +90,7 @@ if (qrStr) {
           //IPA File Link
           var ipaDownloadLink = response.latestVersion.ipaFileLink;
           document.getElementById('downloadIPAFileButton').hidden = (ipaDownloadLink == null);
-          document.getElementById('downloadIPAFileLink').href = ipaDownloadLink;
+          document.getElementById('downloadIPAFileLink').href = "/download.html?down=" + ipaDownloadLink;
 
           //provisioning profile details
           if (response.latestVersion.mobileprovision) {
