@@ -224,6 +224,8 @@ function showProvisionedDevices() {
 function downloadIPAFile() {
   if (ipaDownloadLink) {
     window.location.href = ipaDownloadLink;
+    mainView.router.load({ pageName: 'downloadIPA' });
+    insertAdsOnDiv('downloadIPA-ads');
   }
 }
 
