@@ -70,7 +70,7 @@
                 <!-- Installation Page -->
                 <div class="page" data-page="download">
                     <div class="page-content">
-                        <div id="downloadTitle" class="content-block-title">Your download will be start within 10 sec.</div>
+                        <div id="downloadTitle" class="content-block-title">Downloading IPA in 10 sec...</div>
                         <div class="list-block tablet-inset">
                             <ul>
                                 <li class="item-content">
@@ -93,21 +93,30 @@
             <ins class="adsbygoogle adslot_1" data-ad-client="ca-pub-3139212365885959" data-ad-slot="5702922209" data-ad-format="auto"></ins>
         </center>`;
         (adsbygoogle = window.adsbygoogle || []).push({});
-        var timeValue = 7;
+        var timeValue = 10;
         function updateClock() {
             if (timeValue != 0) {
-                document.getElementById('downloadTitle').innerHTML = 'Your download will be start within '+ timeValue +' sec.';
+                document.getElementById('downloadTitle').innerHTML = 'Downloading IPA in '+ timeValue +' sec...';
                 setTimeout(updateClock, 1000);
             } else {
                 var qrStr = decodeURIComponent(window.location.search);
                 qrStr = qrStr.split("?down=")[1];
-                window.location.href = qrStr;
                 document.getElementById('userHint').innerHTML = adText + " <a href='" + qrStr + "'>Click here</a>" + ' if your browser does not start the download automatically.';
+            }
+            
+            //start download
+            if (timeValue == 3) {
+                var qrStr = decodeURIComponent(window.location.search);
+                qrStr = qrStr.split("?down=")[1];
+                window.location.href = qrStr;
             }
             timeValue--;
         }
         updateClock();
     </script>
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 
 </html>
