@@ -11,21 +11,65 @@
     <link rel="stylesheet" href="css/my-app.css">
 </head>
 
-<body>
+<body> <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-cover">
+      <!-- Left view-->
+      <div class="view view-left navbar-through">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center sliding">AppBox</div>
+            <div class="right"></div>
+          </div>
+        </div>
+        <div class="pages">
+          <div data-page="index-left" class="page">
+            <div class="page-content">
+              <div class="content-block-title">AppBox</div>
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <a href="about.html" data-view=".view-main" class="item-link close-panel">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">About</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.tryappbox.com" target="_blank" data-view=".view-main" class="item-link close-panel external">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Website</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="views">
         <!-- Right view, it is main view-->
         <div class="view view-main navbar-through">
             <div class="navbar">
-                <div class="navbar-inner" data-page="loading">
-                    <div class="center">Downloading IPA File...</div>
+                <div class="navbar-inner" data-page="download">
+                    <div class="center">Downloading...</div>
                 </div>
             </div>
             <!-- Pages-->
             <div class="pages">
                 <!-- Installation Page -->
-                <div class="page cached" data-page="post-install">
+                <div class="page cached" data-page="download">
                     <div class="page-content">
-                        <div class="content-block-title">Installation in progress...</div>
+                        <div class="content-block-title">Downloading IPA File..</div>
                         <div class="list-block tablet-inset">
                             <ul>
                                 <li class="item-content">
