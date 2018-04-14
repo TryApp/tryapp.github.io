@@ -89,7 +89,7 @@ if (qrStr) {
           document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';
           
           //IPA File Link
-          ipaDownloadLink = response.latestVersion.ipaDownloadLink;
+          ipaDownloadLink = response.latestVersion.ipaFileLink;
           document.getElementById('downloadIPAFileButton').hidden = (ipaDownloadLink == null);
 
           //provisioning profile details
