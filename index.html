@@ -84,11 +84,6 @@
           <div class="center">Installation...</div>
           <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
         </div>
-        <div class="navbar-inner cached" data-page="downloadIPA">
-          <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-          <div class="center">Downloading...</div>
-          <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
-        </div>
         <div class="navbar-inner cached" data-page="moreDetails">
           <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
           <div id="appTitleMoreDetails" class="center">Installation...</div>
@@ -191,7 +186,7 @@
                   </a>
                 </li>
                 <li id="downloadIPAFileButton">
-                  <a onclick="downloadIPAFile()" class="item-link">
+                  <a id="downloadIPAFileLink" class="item-link" target="_blank">
                     <div class="item-content">
                       <div class="item-inner">
                         <div class="item-title">Download IPA</div>
@@ -301,20 +296,6 @@
             <div id="allProvisionedDevicesDiv" class="list-block media-list">
             </div>
             <div id="allProvisionedDevices-ads"></div>
-          </div>
-        </div>
-        <!--Download IPA Page -->
-        <div class="page cached" data-page="downloadIPA">
-          <div class="page-content">
-            <div class="content-block-title">Downloading IPA File...</div>
-            <div class="list-block tablet-inset">
-              <ul>
-                <li class="item-content">
-                  <div id="installationTitle" class="item-inner">Make sure, this option will only download the IPA file. It'll not install the IPA file on your device. To install this app, please go back and select "Install Application" or "Install Latest Version"</div>
-                </li>
-              </ul>
-            </div>
-            <div id="downloadIPA-ads"></div>
           </div>
         </div>
         <!-- Installation Page -->

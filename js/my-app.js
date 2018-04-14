@@ -27,7 +27,6 @@ qrcode.makeCode(window.location.href);
 var qrStr = decodeURIComponent(window.location.search);
 qrStr = qrStr.split("?url=")[1];
 var menifestLinkPath = qrStr;
-var ipaDownloadLink;
 if (qrStr) {
   if (qrStr.indexOf('manifest.plist') != -1) {
     var client = new XMLHttpRequest();
@@ -89,8 +88,9 @@ if (qrStr) {
           document.getElementById('appVersion').textContent = appVersion + ' (' + appBuild  +')';
           
           //IPA File Link
-          ipaDownloadLink = response.latestVersion.ipaFileLink;
+          var ipaDownloadLink = response.latestVersion.ipaFileLink;
           document.getElementById('downloadIPAFileButton').hidden = (ipaDownloadLink == null);
+          document.getElementById('downloadIPAFileLink').href = ipaDownloadLink;
 
           //provisioning profile details
           if (response.latestVersion.mobileprovision) {
@@ -218,15 +218,6 @@ function showMoreDetails() {
 function showProvisionedDevices() {
   mainView.router.load({pageName: 'allProvisionedDevices'});
   insertAdsOnDiv('allProvisionedDevices-ads');
-}
-
-//Downlaod IPA File
-function downloadIPAFile() {
-  if (ipaDownloadLink) {
-    window.location.href = ipaDownloadLink;
-    mainView.router.load({ pageName: 'downloadIPA' });
-    insertAdsOnDiv('downloadIPA-ads');
-  }
 }
 
 //Update installation message
