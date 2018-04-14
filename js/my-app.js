@@ -90,10 +90,7 @@ if (qrStr) {
           //IPA File Link
           var ipaDownloadLink = response.latestVersion.ipaFileLink;
           document.getElementById('downloadIPAFileButton').hidden = (ipaDownloadLink == null);
-          if (ipaDownloadLink) {
-            ipaDownloadLink = ipaDownloadLink.split("dropbox.com")[1];
-            document.getElementById('downloadIPAFileLink').href = 'https://dl.dropbox.com' + ipaDownloadLink;
-          }
+          document.getElementById('downloadIPAFileLink').href = "../download.html?down=" + ipaDownloadLink;
 
           //provisioning profile details
           if (response.latestVersion.mobileprovision) {

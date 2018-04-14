@@ -1,10 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>AppBox</title>
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/my-app.css">
+</head>
+
 <body>
+    <div class="views">
+        <!-- Right view, it is main view-->
+        <div class="view view-main navbar-through">
+            <div class="navbar">
+                <div class="navbar-inner" data-page="loading">
+                    <div class="center">Downloading IPA File...</div>
+                </div>
+            </div>
+            <!-- Pages-->
+            <div class="pages">
+                <!-- Installation Page -->
+                <div class="page cached" data-page="post-install">
+                    <div class="page-content">
+                        <div class="content-block-title">Installation in progress...</div>
+                        <div class="list-block tablet-inset">
+                            <ul>
+                                <li class="item-content">
+                                    <div id="installationTitle" class="item-inner">Make sure, this option will only download the IPA file. It'll not install the IPA file
+                                        on your device. To install this app, please go back and select "Install Application"
+                                        or "Install Latest Version"
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="post-install-ads"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        downloadIPAFile()
+        var qrStr = decodeURIComponent(window.location.search);
+        qrStr = qrStr.split("?down=")[1];
+        window.location.href = qrStr;
     </script>
 </body>
-</head>
 </html>
