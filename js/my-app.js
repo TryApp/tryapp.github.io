@@ -45,6 +45,7 @@ if (qrStr) {
           document.getElementById('installButton').textContent = "Install Application";
           document.getElementById('showAllBuildButton').hidden = true;
           document.getElementById('showMoreDetailsOption').hidden = true;
+          document.getElementById('downloadIPAFileButton').hidden = true;
           document.title = appTitle + " | AppBox";
           trackPageName();
           updateInstallationMessage(appTitle);
