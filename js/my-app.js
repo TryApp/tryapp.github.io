@@ -83,7 +83,7 @@ if (qrStr) {
           //app icon
           var appIcon = response.latestVersion.icon;
           document.getElementById('appIconItem').hidden = (appIcon == null);
-          document.getElementById('appIcon').style.backgroundImage = appIcon;
+          document.getElementById('appIcon').style.backgroundImage = "url('" + appIcon + "')";
 
           //bundle identifier
           var appIdentifier = response.latestVersion.identifier;
