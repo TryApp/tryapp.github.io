@@ -141,11 +141,11 @@ if (qrStr) {
             if (myApp.device.ios) {
               if ((myApp.device.iphone || myApp.device.ipod)) {
                 if (!supporteddevice.toLowerCase().includes('iphone')) {
-                  message = '"'+ appTitle + '" not compatible with ' + iPhone ? 'iPhone.' : 'iPod.';
+                  message = '"'+ appTitle + '" not compatible with ' + (iPhone ? 'iPhone.' : 'iPod.');
                 }
               } else if (myApp.device.ipad) {
                 if (!supporteddevice.toLowerCase().includes('ipad')) {
-                  message = '"'+ appTitle + '" not compatible with "iPad." ';
+                  message = '"'+ appTitle + '" not compatible with iPad. ';
                 }
               }
               if (myApp.device.osVersion <= minOSVersion) {
