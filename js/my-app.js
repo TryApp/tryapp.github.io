@@ -148,7 +148,7 @@ if (qrStr) {
                   message = '"'+ appTitle + '" not compatible with iPad. ';
                 }
               }
-              if (myApp.device.osVersion <= minOSVersion) {
+              if (myApp.device.osVersion < minOSVersion) {
                 message = '"' + appTitle + '" only compatible with iOS ' + minOSVersion + ' or higher.';
               }
             } else {
