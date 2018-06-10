@@ -135,6 +135,31 @@ if (qrStr) {
             } else {
               document.getElementById('showProvisionedDevicesList').hidden = true;
             }
+
+            //check app compatability with device
+            var message = "";
+            if (myApp.device.ios) {
+              if ((myApp.device.iphone || myApp.device.ipod)) {
+                if (!supporteddevice.toLowerCase().includes('iphone')) {
+                  message += appTitle + ' not compatible with ' + iPhone ? 'iPhone.' : 'iPod';
+                }
+              } else if (myApp.device.ipad) {
+                if (!supporteddevice.toLowerCase().includes('ipad')) {
+                  message += appTitle + ' not compatible with iPad. ';
+                }
+              }
+              if (myApp.device.osVersion >= minOSVersion) {
+                message += appTitle + ' only compatible with iOS ' + minOSVersion + 'or higher.';
+              }
+            } else {
+              message += 'Open this page on your iOS device to install the' + appTitle + '. ';
+            }
+            if (message.length > 0) {
+              myApp.toast.create({
+                text: message,
+                closeButton: true,
+              }).show();
+            }
           } else {
             //hide hide more details for old builds
             document.getElementById('showMoreDetailsOption').hidden = true;
