@@ -46,7 +46,7 @@ if (qrStr) {
           document.getElementById('showAllBuildButton').hidden = true;
           document.getElementById('showMoreDetailsOption').hidden = true;
           document.getElementById('downloadIPAFileButton').hidden = true;
-          document.getElementById('appIconItem').hidden = true;
+
           document.title = appTitle + " | AppBox";
           trackPageName();
           updateInstallationMessage(appTitle);
@@ -79,11 +79,6 @@ if (qrStr) {
           document.getElementById('appTitleAllBuilds').textContent = appTitle;
           document.getElementById('appTitleMoreDetails').textContent = appTitle;
           document.getElementById('appTitleProvisionDevice').textContent = appTitle;
-
-          //app icon
-          var appIcon = response.latestVersion.icon;
-          document.getElementById('appIconItem').hidden = (appIcon == null);
-          document.getElementById('appIcon').style.backgroundImage = "url('" + appIcon + "')";
 
           //bundle identifier
           var appIdentifier = response.latestVersion.identifier;
