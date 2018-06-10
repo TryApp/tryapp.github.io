@@ -145,7 +145,7 @@ if (qrStr) {
                 }
               } else if (myApp.device.ipad) {
                 if (!supporteddevice.toLowerCase().includes('ipad')) {
-                  message = '"'+ appTitle + '" not compatible with iPad. But you can still install the application.';
+                  message = '"'+ appTitle + '" not optimised for iPad. But you still can install the application.';
                 }
               }
               if (myApp.device.osVersion < minOSVersion) {
