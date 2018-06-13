@@ -148,7 +148,7 @@ if (qrStr) {
                   message = '"'+ appTitle + '" not optimised for iPad. But you still can install the application.';
                 }
               }
-              if (myApp.device.osVersion < minOSVersion) {
+              if (parseFloat(myApp.device.osVersion) < parseFloat(minOSVersion)) {
                 message = '"' + appTitle + '" only compatible with iOS ' + minOSVersion + ' or higher.';
               }
             } else {
