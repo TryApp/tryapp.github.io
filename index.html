@@ -1,5 +1,9 @@
 <script>
   var qrStr = decodeURIComponent(window.location.search);
   qrStr = qrStr.split("?url=")[1];
-  window.location.href='https://web.getappbox.com/?url='+qrStr;
+  if (qrStr) {
+    window.location.href='https://web.getappbox.com/?url='+qrStr;
+  } else {
+    window.location.href='https://web.getappbox.com/';
+  }
 </script>
